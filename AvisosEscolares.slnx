@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="AvisosAPI/AvisosAPI.csproj" />
+  <Project Path="AvisosMAUI/AvisosMAUI.csproj" />
+</Solution>
