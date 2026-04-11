@@ -9,31 +9,29 @@ public partial class AvisosPage : ContentPage
 
     private void OnTabClicked(object sender, EventArgs e)
     {
-        var button = sender as Button;
+        var layout = sender as Grid;
 
-        if (button == BtnGenerales)
+        if (layout == BtnPersonales)
         {
-            // Activar visualmente Generales
-            BtnGenerales.BackgroundColor = Color.FromArgb("#26A69A");
-            BtnGenerales.TextColor = Colors.White;
-            ViewGenerales.IsVisible = true;
+            BtnPersonales.BackgroundColor = Color.FromArgb("#26A69A");
+            ViewPersonales.IsVisible = true;
+            LblPersonales.TextColor = Colors.White;
 
-            // Desactivar Personales
-            BtnPersonales.BackgroundColor = Colors.Transparent;
-            BtnPersonales.TextColor = Colors.Gray;
-            ViewPersonales.IsVisible = false;
+            BtnGenerales.BackgroundColor = Colors.Transparent;
+            ViewGenerales.IsVisible = false;
+            LblGenerales.TextColor = Colors.Gray;
+
         }
         else
         {
-            // Activar visualmente Personales
-            BtnPersonales.BackgroundColor = Color.FromArgb("#26A69A");
-            BtnPersonales.TextColor = Colors.White;
-            ViewPersonales.IsVisible = true;
+            BtnGenerales.BackgroundColor = Color.FromArgb("#FFA69A");
+            LblGenerales.TextColor = Colors.White;
+            ViewGenerales.IsVisible = true;
 
-            // Desactivar Generales
-            BtnGenerales.BackgroundColor = Colors.Transparent;
-            BtnGenerales.TextColor = Colors.Gray;
-            ViewGenerales.IsVisible = false;
+            BtnPersonales.BackgroundColor = Colors.Transparent;
+            LblPersonales.TextColor = Colors.Gray;
+            ViewPersonales.IsVisible = false;
+
         }
     }
 }
