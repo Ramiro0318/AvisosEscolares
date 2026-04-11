@@ -9,7 +9,7 @@
     <Grid RowDefinitions="Auto, *">
 
         <Grid Grid.Row="0" ColumnDefinitions="*, *" HeightRequest="50" BackgroundColor="#F0F0F0">
-            <Grid x:Name="BtnPersonales" Grid.Column="0" BackgroundColor="#26A69A"  HeightRequest="55">
+            <Grid x:Name="BtnPersonales" Grid.Column="0" BackgroundColor="#26A69A" HeightRequest="55">
 
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnTabClicked" />

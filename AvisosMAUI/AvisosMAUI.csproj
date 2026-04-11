@@ -48,6 +48,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\dots.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.51" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.5" />
 		<PackageReference Include="Microsoft.Maui.Essentials" Version="10.0.51" />
@@ -59,6 +63,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Resource Include="Resources\dots.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\AvisoPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\AvisosPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
