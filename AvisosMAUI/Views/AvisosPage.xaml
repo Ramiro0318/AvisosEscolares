@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="AvisosMAUI.Views.AvisosPage"
              Title="AvisosPage">
-    <VerticalStackLayout Margin="20, 10">
-        <!--<Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+    
+    <!--<VerticalStackLayout Margin="20, 10">
+        --><!--<Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
             <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
                 <HorizontalStackLayout Spacing="5">
                     <Label Text="Entrega de tareas"></Label>
@@ -14,8 +16,7 @@
                 </HorizontalStackLayout>
                 <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Tienes que entregar todas tus tareas antes de hoy a las 12."></Label>
             </Grid>
-        </Border>-->
-        
+        </Border>--><!--
         <CollectionView SelectionMode="Single">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="12"/>
@@ -37,5 +38,36 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
            
-    </VerticalStackLayout>
+    </VerticalStackLayout>-->
+
+    <Grid RowDefinitions="Auto, *">
+
+        <Grid Grid.Row="0" ColumnDefinitions="*, *" HeightRequest="50" BackgroundColor="#F0F0F0">
+            <Button x:Name="BtnGenerales" 
+                Text="GENERALES" 
+                Grid.Column="0"
+                BackgroundColor="#26A69A" 
+                TextColor="White"
+                CornerRadius="0"
+                Clicked="OnTabClicked"/>
+
+            <Button x:Name="BtnPersonales" 
+                Text="PERSONALES" 
+                Grid.Column="1"
+                BackgroundColor="Transparent" 
+                TextColor="Gray"
+                CornerRadius="0"
+                Clicked="OnTabClicked"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <VerticalStackLayout x:Name="ViewGenerales" IsVisible="True" Padding="20">
+                <Label Text="Aquí va tu CollectionView de siempre" FontAttributes="Bold"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout x:Name="ViewPersonales" IsVisible="False" Padding="20">
+                <Label Text="Aquí van tus avisos privados" FontAttributes="Bold"/>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>
