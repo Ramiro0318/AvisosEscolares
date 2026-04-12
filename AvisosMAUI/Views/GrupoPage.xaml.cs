@@ -1,53 +1,31 @@
 namespace AvisosMAUI.Views;
+
+using AvisosMAUI.Models;
 using Microsoft.Maui.Platform;
+using Microsoft.Maui.Layouts;
+using System.Linq;
 
 public partial class GrupoPage : ContentPage
 {
-	public GrupoPage()
-	{
-		InitializeComponent();
-    }
-
-    private void OnShowCustomMenu(object sender, EventArgs e)
+    public GrupoPage()
     {
-        var view = sender as View;
-        if (view == null) return;
+        InitializeComponent();
 
-        double totalX = 0;
-        double totalY = 0;
+        // Creamos una lista vacía
+        var listaDePrueba = new List<Alumno>();
 
-        var current = view;
-
-        // Mientras el elemento actual tenga un padre, seguimos sumando
-        while (current != null)
+        // Llenamos con 20 nombres genéricos para probar el scroll
+        for (int i = 1; i <= 20; i++)
         {
-            totalX += current.X;
-            totalY += current.Y;
-
-            // Intentamos subir al siguiente nivel
-            var parent = current.Parent as View;
-
-            // Si el padre ya no es una View (es la página o nulo), salimos
-            if (parent == null) break;
-
-            current = parent;
+            listaDePrueba.Add(new Alumno
+            {
+                Nombre = $"Alumno de Prueba #{i}",
+                Matricula = $"221G{i:D4}" // Esto genera 0001, 0002, etc.
+            });
         }
 
-        // Obtenemos cuánto ha bajado el scroll actualmente
-        double desplazamiento = MiScroll.ScrollY;
-
-        // Aplicamos la posición
-        MiMenuFlotante.TranslationX = totalX - 120;
-        MiMenuFlotante.TranslationY = totalY - 85 - desplazamiento;
-
-        MiMenuFlotante.IsVisible = true;
-        Escudo.IsVisible = true;
-    }
-
-    private void OnCloseCustomMenu(object sender, EventArgs e)
-    {
-        MiMenuFlotante.IsVisible = false;
-        Escudo.IsVisible = false;
+        // Se los asignamos al CollectionView
+        ListaAlumnos.ItemsSource = listaDePrueba;
     }
 
 

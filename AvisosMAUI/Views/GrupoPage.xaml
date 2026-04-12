@@ -11,97 +11,56 @@
             <ImageButton Source="edit.png" BackgroundColor="Transparent" BorderColor="Transparent" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"></ImageButton>
         </HorizontalStackLayout>
 
-        <Grid Grid.Row="1" RowDefinitions="*" VerticalOptions="Fill">
-            <ScrollView x:Name="MiScroll" Grid.Row="0">
-                <VerticalStackLayout Padding="10" Spacing="8">
-                    <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
-                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
-                            <Label Text="Ramiro Ronaldo Rodríguez Valverde" FontAttributes="Bold" />
-                            <Label Grid.Row="1" Text="221G0321" />
+        <Grid Grid.Row="1" RowDefinitions="*">
+            <CollectionView x:Name="ListaAlumnos" SelectionMode="Single">
 
-                            <ImageButton Grid.Column="1" Source="dots.png" Clicked="OnShowCustomMenu" BackgroundColor="Transparent" />
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
-                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
-                            <Label Text="Ramiro Ronaldo Rodríguez Valverde" FontAttributes="Bold" />
-                            <Label Grid.Row="1" Text="221G0321" />
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="8"/>
+                </CollectionView.ItemsLayout>
 
-                            <ImageButton Grid.Column="1" Source="dots.png" Clicked="OnShowCustomMenu" BackgroundColor="Transparent" />
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
-                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
-                            <Label Text="Ramiro Ronaldo Rodríguez Valverde" FontAttributes="Bold" />
-                            <Label Grid.Row="1" Text="221G0321" />
-
-                            <ImageButton Grid.Column="1" Source="dots.png" Clicked="OnShowCustomMenu" BackgroundColor="Transparent" />
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
-                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
-                            <Label Text="Ramiro Ronaldo Rodríguez Valverde" FontAttributes="Bold" />
-                            <Label Grid.Row="1" Text="221G0321" />
-
-                            <ImageButton Grid.Column="1" Source="dots.png" Clicked="OnShowCustomMenu" BackgroundColor="Transparent" />
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
-                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
-                            <Label Text="Ramiro Ronaldo Rodríguez Valverde" FontAttributes="Bold" />
-                            <Label Grid.Row="1" Text="221G0321" />
-
-                            <ImageButton Grid.Column="1" Source="dots.png" Clicked="OnShowCustomMenu" BackgroundColor="Transparent" />
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
-                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
-                            <Label Text="Ramiro Ronaldo Rodríguez Valverde" FontAttributes="Bold" />
-                            <Label Grid.Row="1" Text="221G0321" />
-
-                            <ImageButton Grid.Column="1" Source="dots.png" Clicked="OnShowCustomMenu" BackgroundColor="Transparent" />
-                        </Grid>
-                    </Border>
-                </VerticalStackLayout>
-            </ScrollView>
+                <CollectionView.ItemTemplate>
 
 
-            <Button x:Name="Escudo"  BackgroundColor="Transparent" BorderColor="Transparent" IsVisible="False" Clicked="OnCloseCustomMenu" />
+                    <DataTemplate>
+                        <SwipeView>
 
-            <Border x:Name="MiMenuFlotante" IsVisible="False" ZIndex="10" BackgroundColor="White" Stroke="Gray" StrokeShape="10" WidthRequest="150" HeightRequest="100" HorizontalOptions="Start" VerticalOptions="Start" Margin="0,50,20,0" Shadow="{Shadow Brush=Black, Offset='5,5', Radius=10, Opacity=0.2}">
-                <VerticalStackLayout Padding="5">
-                    <Button Text="Editar" BackgroundColor="Transparent" TextColor="Black" />
-                    <BoxView HeightRequest="1" Color="LightGray" />
-                    <Button Text="Eliminar" BackgroundColor="Transparent" TextColor="Red" />
-                </VerticalStackLayout>
-            </Border>
-        </Grid>
+                            <!-- Acciones al deslizar -->
+                            <SwipeView.RightItems>
+                                <SwipeItems Mode="Reveal">
 
+                                    <SwipeItem Text="Editar"
+                           BackgroundColor="LightGray"
+                           Command="{Binding EditCommand}" />
 
-        <!--<Grid Grid.Row="1" RowDefinitions="*" VerticalOptions="Fill">
-            <ScrollView>
-                <CollectionView SelectionMode="Single" >
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="8"/>
-                    </CollectionView.ItemsLayout>
+                                    <SwipeItem Text="Eliminar"
+                           BackgroundColor="Red"
+                           Command="{Binding DeleteCommand}" />
 
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
-                                <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
-                                    <Label Text="Ramiro Ronaldo Rodríguez Valverde" FontAttributes="Bold" />
-                                    <Label Grid.Row="1" Text="221G0321" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
 
-                                    <ImageButton Grid.Column="1" Source="dots.png" Clicked="OnShowCustomMenu" BackgroundColor="Transparent" />
-                                </Grid>
+                            <!-- CONTENIDO -->
+                            <Border Background="AliceBlue"
+                Padding="12"
+                Stroke="#D1D1D1"
+                StrokeShape="20"
+                Margin="10,4">
+
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Nombre}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Matricula}" />
+                                </VerticalStackLayout>
+
                             </Border>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </ScrollView>
-        </Grid>-->
 
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
+            </CollectionView>
+
+           
+        </Grid>
     </Grid>
 
 </ContentPage>
