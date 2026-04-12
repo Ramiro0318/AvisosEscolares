@@ -4,8 +4,14 @@
              x:Class="AvisosMAUI.Views.AvisoPage" NavigationPage.HasNavigationBar="False"
              Title="" Background="AliceBlue">
     <VerticalStackLayout Spacing="10">
-        <!--#FFA69A-->
         <Grid BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55">
+            <Grid.Triggers>
+                <!--Obvio la propiedad es sugerencia-->
+                <DataTrigger TargetType="Grid" Binding="{Binding TipoAviso}" Value="Global">
+                    <Setter Property="BackgroundColor" Value="#FFA69A" />
+                </DataTrigger>
+            </Grid.Triggers>
+            
             <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center" Spacing="8">
                 <Label Text="Pasar a entregar documentación" TextColor="White" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="WordWrap"/>
                 <Border Background="Red" Padding="4,0" StrokeShape="4" IsVisible="True">

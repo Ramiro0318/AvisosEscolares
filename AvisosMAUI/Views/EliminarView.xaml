@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
              x:Class="AvisosMAUI.Views.EliminarView">
     <VerticalStackLayout Spacing="10">
-        <Label Text="¿Eliminar a alumno?" FontAttributes="Bold" HorizontalOptions="Center"/>
+        <Label Text="Condirmar eliminación" FontAttributes="Bold" HorizontalOptions="Center"/>
 
         <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-            <Button Text="Cancelar" Command="" BackgroundColor="LightGray"/>
-            <Button Text="Eliminar" Command="" BackgroundColor="Red" TextColor="White"/>
+            <Button Text="Cancelar" BackgroundColor="LightGray"/>
+            <Button Text="Eliminar" BackgroundColor="Red" TextColor="White"/>
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentView>
