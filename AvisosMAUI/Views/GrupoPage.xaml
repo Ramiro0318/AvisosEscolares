@@ -11,41 +11,26 @@
             <ImageButton Source="edit.png" BackgroundColor="Transparent" BorderColor="Transparent" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"></ImageButton>
         </HorizontalStackLayout>
 
-        <Grid Grid.Row="1" RowDefinitions="*">
+        <Grid Grid.Row="1" RowDefinitions="*" Margin="20, 0">
             <CollectionView x:Name="ListaAlumnos" SelectionMode="Single">
 
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="8"/>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
 
-
                     <DataTemplate>
                         <SwipeView>
-
                             <!-- Acciones al deslizar -->
                             <SwipeView.RightItems>
                                 <SwipeItems Mode="Reveal">
-
-                                    <SwipeItem Text="Editar"
-                           BackgroundColor="LightGray"
-                           Command="{Binding EditCommand}" />
-
-                                    <SwipeItem Text="Eliminar"
-                           BackgroundColor="Red"
-                           Command="{Binding DeleteCommand}" />
-
+                                    <SwipeItem Text="Editar" BackgroundColor="LightGray" />
+                                    <SwipeItem Text="Eliminar" BackgroundColor="Red" />
                                 </SwipeItems>
                             </SwipeView.RightItems>
-
-                            <!-- CONTENIDO -->
-                            <Border Background="AliceBlue"
-                Padding="12"
-                Stroke="#D1D1D1"
-                StrokeShape="20"
-                Margin="10,4">
-
+                            
+                            <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
                                 <VerticalStackLayout>
                                     <Label Text="{Binding Nombre}" FontAttributes="Bold" />
                                     <Label Text="{Binding Matricula}" />
