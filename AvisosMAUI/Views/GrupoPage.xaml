@@ -25,7 +25,7 @@
                             <!-- Acciones al deslizar -->
                             <SwipeView.RightItems>
                                 <SwipeItems Mode="Reveal">
-                                    <SwipeItem Text="Editar" BackgroundColor="LightGray" />
+                                    <SwipeItem Text="Editar" BackgroundColor="LightGray"  />
                                     <SwipeItem Text="Eliminar" BackgroundColor="Red" />
                                 </SwipeItems>
                             </SwipeView.RightItems>

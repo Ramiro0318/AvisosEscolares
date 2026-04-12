@@ -81,6 +81,9 @@
 	  <MauiXaml Update="Views\AvisosPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\EliminarView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\GrupoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
