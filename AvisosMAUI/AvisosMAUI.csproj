@@ -49,6 +49,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\dots.png" />
+	  <None Remove="Resources\edit.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -63,9 +64,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Resource Include="Resources\dots.png">
+	  <MauiImage Include="Resources\edit.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Resource>
+	  </MauiImage>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\dots.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiImage>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -73,6 +80,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AvisosPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\GrupoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\RegistroPage.xaml">

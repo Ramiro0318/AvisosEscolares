@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AvisosMAUI.Views.GrupoPage" NavigationPage.HasNavigationBar="False"
+             Title="">
+
+    <Grid RowDefinitions="Auto, *">
+        <HorizontalStackLayout BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55" Spacing="5">
+
+            <Entry Text="Grupo de clases" IsReadOnly="True" TextColor="White" FontSize="Title" FontAttributes="Bold" Background="Transparent" WidthRequest="260" ReturnType="Done" TextTransform="None"/>
+            <ImageButton Source="edit.png" BackgroundColor="Transparent" BorderColor="Transparent" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"></ImageButton>
+        </HorizontalStackLayout>
+
+        <Grid Grid.Row="1" RowDefinitions="*" VerticalOptions="Fill">
+            <ScrollView x:Name="MiScroll" Grid.Row="0">
+                <VerticalStackLayout Padding="10" Spacing="8">
+                    <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Text="Ramiro Ronaldo Rodríguez Valverde" FontAttributes="Bold" />
+                            <Label Grid.Row="1" Text="221G0321" />
+
+                            <ImageButton Grid.Column="1" Source="dots.png" Clicked="OnShowCustomMenu" BackgroundColor="Transparent" />
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Text="Ramiro Ronaldo Rodríguez Valverde" FontAttributes="Bold" />
+                            <Label Grid.Row="1" Text="221G0321" />
+
+                            <ImageButton Grid.Column="1" Source="dots.png" Clicked="OnShowCustomMenu" BackgroundColor="Transparent" />
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Text="Ramiro Ronaldo Rodríguez Valverde" FontAttributes="Bold" />
+                            <Label Grid.Row="1" Text="221G0321" />
+
+                            <ImageButton Grid.Column="1" Source="dots.png" Clicked="OnShowCustomMenu" BackgroundColor="Transparent" />
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Text="Ramiro Ronaldo Rodríguez Valverde" FontAttributes="Bold" />
+                            <Label Grid.Row="1" Text="221G0321" />
+
+                            <ImageButton Grid.Column="1" Source="dots.png" Clicked="OnShowCustomMenu" BackgroundColor="Transparent" />
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Text="Ramiro Ronaldo Rodríguez Valverde" FontAttributes="Bold" />
+                            <Label Grid.Row="1" Text="221G0321" />
+
+                            <ImageButton Grid.Column="1" Source="dots.png" Clicked="OnShowCustomMenu" BackgroundColor="Transparent" />
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Text="Ramiro Ronaldo Rodríguez Valverde" FontAttributes="Bold" />
+                            <Label Grid.Row="1" Text="221G0321" />
+
+                            <ImageButton Grid.Column="1" Source="dots.png" Clicked="OnShowCustomMenu" BackgroundColor="Transparent" />
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+
+
+            <Button x:Name="Escudo"  BackgroundColor="Transparent" BorderColor="Transparent" IsVisible="False" Clicked="OnCloseCustomMenu" />
+
+            <Border x:Name="MiMenuFlotante" IsVisible="False" ZIndex="10" BackgroundColor="White" Stroke="Gray" StrokeShape="10" WidthRequest="150" HeightRequest="100" HorizontalOptions="Start" VerticalOptions="Start" Margin="0,50,20,0" Shadow="{Shadow Brush=Black, Offset='5,5', Radius=10, Opacity=0.2}">
+                <VerticalStackLayout Padding="5">
+                    <Button Text="Editar" BackgroundColor="Transparent" TextColor="Black" />
+                    <BoxView HeightRequest="1" Color="LightGray" />
+                    <Button Text="Eliminar" BackgroundColor="Transparent" TextColor="Red" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+
+        <!--<Grid Grid.Row="1" RowDefinitions="*" VerticalOptions="Fill">
+            <ScrollView>
+                <CollectionView SelectionMode="Single" >
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="8"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
+                                <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                                    <Label Text="Ramiro Ronaldo Rodríguez Valverde" FontAttributes="Bold" />
+                                    <Label Grid.Row="1" Text="221G0321" />
+
+                                    <ImageButton Grid.Column="1" Source="dots.png" Clicked="OnShowCustomMenu" BackgroundColor="Transparent" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+        </Grid>-->
+
+
+    </Grid>
+
+</ContentPage>

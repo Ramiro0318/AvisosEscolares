@@ -14,7 +14,7 @@
             <Label  Grid.Row="3" Margin="30,0">Num de control:</Label>
             <Entry  Grid.Row="4" Margin="30,0" Placeholder="Ej: 221G0333"></Entry>
             <Label  Grid.Row="5" Margin="30,0">Correo:</Label>
-            <Entry  Grid.Row="6" Margin="30,0" Placeholder="Ej: 221G0333@escuela.com"></Entry>
+            <Entry  Grid.Row="6" Margin="30,0" Placeholder="Ej: 221G0333@escuela.com" Keyboard="Email"></Entry>
             <Label  Grid.Row="7" Margin="30,0">Contraseña:</Label>
             <Entry  Grid.Row="8" Margin="30,0" Placeholder="Contraseña" IsPassword="True"></Entry>
             <Label  Grid.Row="9" Margin="30,0" FontSize="Caption">Al menos 8 caracteres</Label>
