@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="AvisosMAUI.Views.RegistrosPendientesPage"
+             Title="">
+    <Grid RowDefinitions="Auto, Auto, *">
+        <HorizontalStackLayout Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55" Spacing="5">
+            <Label Text="Solicitudes de registro" TextColor="White" FontSize="Title" VerticalTextAlignment="Center" FontAttributes="Bold" Background="Transparent" WidthRequest="260"/>
+        </HorizontalStackLayout>
+
+        <Grid Grid.Row="1" Margin="30,10" HorizontalOptions="Fill">
+            <Button Text="&lt; Volver al grupo" FontSize="17" HeightRequest="40" />
+        </Grid>
+
+        <Grid Grid.Row="2" RowDefinitions="*" Margin="20, 0">
+            <CollectionView x:Name="ListaAlumnos" SelectionMode="Single">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+
+                    <DataTemplate>
+                        <SwipeView>
+                            <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Nombre}" FontAttributes="Bold" />
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Fecha registro: " FontAttributes="Bold" />
+                                                <Span Text="15 de abril 2026 10:30AM" TextColor="#26A69A" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                </VerticalStackLayout>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+
+        </Grid>
+    </Grid>
+</ContentPage>

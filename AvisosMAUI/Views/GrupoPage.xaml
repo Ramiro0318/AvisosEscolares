@@ -4,14 +4,27 @@
              x:Class="AvisosMAUI.Views.GrupoPage" NavigationPage.HasNavigationBar="False"
              Title="">
 
-    <Grid RowDefinitions="Auto, *">
-        <HorizontalStackLayout BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55" Spacing="5">
+    <Grid RowDefinitions="Auto, Auto, *">
+        <HorizontalStackLayout Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55" Spacing="5">
 
             <Entry Text="Grupo de clases" IsReadOnly="True" TextColor="White" FontSize="Title" FontAttributes="Bold" Background="Transparent" WidthRequest="260" ReturnType="Done" TextTransform="None"/>
             <ImageButton Source="edit.png" BackgroundColor="Transparent" BorderColor="Transparent" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"></ImageButton>
         </HorizontalStackLayout>
 
-        <Grid Grid.Row="1" RowDefinitions="*" Margin="20, 0">
+        <Grid Grid.Row="1" Margin="30,10" HorizontalOptions="Fill">
+            <Button Text="Ver registros" FontSize="17" HeightRequest="40" />
+            <Border Background="Red"  Padding="2, -2, 2, 0"  StrokeShape="RoundRectangle 4"  IsVisible="True" HorizontalOptions="End"  VerticalOptions="Start" TranslationX="-70"  TranslationY="12">
+                <Border.Triggers>
+                    <DataTrigger TargetType="Border" Binding="{Binding Pendiente}" Value="True">
+                        <Setter Property="IsVisible" Value="True"></Setter>
+                    </DataTrigger>
+                </Border.Triggers>
+                <Label Text="◉" TextColor="White" VerticalTextAlignment="Start" FontSize="13"></Label>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="2" RowDefinitions="*" Margin="20, 0">
+            <!--El nombre es solo para llenar datos de prueba en el codebehind-->
             <CollectionView x:Name="ListaAlumnos" SelectionMode="Single">
 
                 <CollectionView.ItemsLayout>
@@ -25,11 +38,12 @@
                             <!-- Acciones al deslizar -->
                             <SwipeView.RightItems>
                                 <SwipeItems Mode="Reveal">
+                                    <SwipeItem Text="Enviar aviso" BackgroundColor="#26A69A"  />
                                     <SwipeItem Text="Editar" BackgroundColor="LightGray"  />
                                     <SwipeItem Text="Eliminar" BackgroundColor="Red" />
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            
+
                             <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
                                 <VerticalStackLayout>
                                     <Label Text="{Binding Nombre}" FontAttributes="Bold" />
@@ -44,7 +58,7 @@
 
             </CollectionView>
 
-           
+
         </Grid>
     </Grid>
 
