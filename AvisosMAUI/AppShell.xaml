@@ -8,7 +8,7 @@
     Title="AvisosMAUI">
 
     <ShellContent
-        ContentTemplate="{DataTemplate views:CrearAvisoPage}"
+        ContentTemplate="{DataTemplate views:AvisosPage}"
         Route="RegistroPage" />
 
 </Shell>
