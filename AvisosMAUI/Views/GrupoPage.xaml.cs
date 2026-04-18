@@ -28,5 +28,8 @@ public partial class GrupoPage : ContentPage
         ListaAlumnos.ItemsSource = listaDePrueba;
     }
 
-
+    private void OnToggleMenuClicked(object sender, EventArgs e)
+    {
+        MenuDesplegable.IsVisible = !MenuDesplegable.IsVisible;
+    }
 }

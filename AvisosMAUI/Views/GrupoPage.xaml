@@ -4,38 +4,27 @@
              x:Class="AvisosMAUI.Views.GrupoPage" NavigationPage.HasNavigationBar="False"
              Title="">
 
-    <Grid RowDefinitions="Auto, Auto, *">
-        <HorizontalStackLayout Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55" Spacing="5">
+    <Grid RowDefinitions="Auto, *">
+        <Grid Grid.Row="0" BackgroundColor="#26A69A" Padding="15,0" HeightRequest="55" ZIndex="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-            <Entry Text="Grupo de clases" IsReadOnly="True" TextColor="White" FontSize="Title" FontAttributes="Bold" Background="Transparent" WidthRequest="260" ReturnType="Done" TextTransform="None"/>
-            <ImageButton Source="edit.png" BackgroundColor="Transparent" BorderColor="Transparent" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"></ImageButton>
-        </HorizontalStackLayout>
-
-        <Grid Grid.Row="1" Margin="30,10" HorizontalOptions="Fill">
-            <Button Text="Ver registros" FontSize="17" HeightRequest="40" />
-            <Border Background="Red"  Padding="2, -2, 2, 0"  StrokeShape="RoundRectangle 4"  IsVisible="True" HorizontalOptions="End"  VerticalOptions="Start" TranslationX="-70"  TranslationY="12">
-                <Border.Triggers>
-                    <DataTrigger TargetType="Border" Binding="{Binding Pendiente}" Value="True">
-                        <Setter Property="IsVisible" Value="True"></Setter>
-                    </DataTrigger>
-                </Border.Triggers>
-                <Label Text="◉" TextColor="White" VerticalTextAlignment="Start" FontSize="13"></Label>
-            </Border>
+            <Entry Grid.Column="0" Text="Grupo de clases" IsReadOnly="True" TextColor="White" FontSize="20" FontAttributes="Bold" Background="Transparent" VerticalOptions="Center"/>
+            <ImageButton Grid.Column="1" Source="edit.png" BackgroundColor="Transparent" HeightRequest="40" WidthRequest="40" Margin="0,0,10,0"/>
+            <ImageButton Grid.Column="2" Source="dots.png" BackgroundColor="Transparent" HeightRequest="40" WidthRequest="40" Clicked="OnToggleMenuClicked" />
         </Grid>
 
-        <Grid Grid.Row="2" RowDefinitions="*" Margin="20, 0">
-            <!--El nombre es solo para llenar datos de prueba en el codebehind-->
-            <CollectionView x:Name="ListaAlumnos" SelectionMode="Single">
-
+        <Grid Grid.Row="1">
+            <CollectionView x:Name="ListaAlumnos" SelectionMode="Single" Margin="20,0">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
                 </CollectionView.ItemsLayout>
-
                 <CollectionView.ItemTemplate>
-
                     <DataTemplate>
                         <SwipeView>
-                            <!-- Acciones al deslizar -->
                             <SwipeView.RightItems>
                                 <SwipeItems Mode="Reveal">
                                     <SwipeItem Text="Enviar aviso" BackgroundColor="#26A69A"  />
@@ -43,22 +32,29 @@
                                     <SwipeItem Text="Eliminar" BackgroundColor="Red" />
                                 </SwipeItems>
                             </SwipeView.RightItems>
-
-                            <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="20">
+                            <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="RoundRectangle 20">
                                 <VerticalStackLayout>
                                     <Label Text="{Binding Nombre}" FontAttributes="Bold" />
                                     <Label Text="{Binding Matricula}" />
                                 </VerticalStackLayout>
-
                             </Border>
-
                         </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-
             </CollectionView>
 
+            <Border x:Name="MenuDesplegable" IsVisible="False" BackgroundColor="White" Stroke="LightGray" StrokeShape="RoundRectangle 8" WidthRequest="180" HorizontalOptions="End" VerticalOptions="Start" Margin="0,5,15,0" ZIndex="10" InputTransparent="False">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="5,5" Radius="10" Opacity="0.1" />
+                </Border.Shadow>
 
+                <VerticalStackLayout Spacing="0">
+                    <Button Text="Ver registros" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill"/>
+                    <Button Text="Enviar aviso general" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill"/>
+                    <Button Text="Ver avisos generales" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill"/>
+                    <Button Text="Salir" BackgroundColor="Transparent" TextColor="Red" HorizontalOptions="Fill"/>
+                </VerticalStackLayout>
+            </Border>
         </Grid>
     </Grid>
 

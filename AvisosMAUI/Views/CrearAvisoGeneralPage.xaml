@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AvisosMAUI.Views.CrearAvisoGeneralPage" NavigationPage.HasNavigationBar="False"
+             Title="">
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, 25, *" RowSpacing="8" VerticalOptions="Fill">
+        <Border Grid.Row="0" BackgroundColor="#FFA69A" Padding="10,0" HeightRequest="55">
+            <Label Text="Crear aviso" TextColor="White" FontSize="Title" FontAttributes="Bold" VerticalOptions="Center"/>
+        </Border>
+
+        <Label  Grid.Row="1" Margin="30,0">Destinatario:</Label>
+        <Entry  Grid.Row="2" Margin="30,0" Text="Ramiro Ronaldo Rodríguez Valverde" IsReadOnly="True"></Entry>
+
+        <Label  Grid.Row="3" Margin="30,0">Fecha de vencimiento:</Label>
+        <Border Grid.Row="4" Margin="30,0" BackgroundColor="AliceBlue" StrokeShape="RoundRectangle 4" Stroke="Transparent"></Border>
+        <DatePicker Grid.Row="4" Margin="30,0" x:Name="FechaVencimiento" Format="D" TextColor="Black" MinimumDate="2020-01-01" VerticalOptions="Center" />
+
+        <Label  Grid.Row="5" Margin="30,5, 30, 0">Título:</Label>
+        <Entry  Grid.Row="6" Margin="30,0" Placeholder="Título"></Entry>
+
+
+        <Label  Grid.Row="7" Margin="30,0">Contenido:</Label>
+        <Editor Grid.Row="8" Margin="30,0" HeightRequest="125" Placeholder="Escribe el mensaje aquí..." AutoSize="Disabled" VerticalTextAlignment="Start"/>
+
+        <Label  Grid.Row="9" Margin="30,0" TextColor="Red" IsVisible="True" MaximumWidthRequest="350" HorizontalOptions="Start" VerticalOptions="Center">Mensaje de error</Label>
+
+        <HorizontalStackLayout Grid.Row="10" Spacing="5" Margin="30, 20" VerticalOptions="End" HorizontalOptions="End">
+            <Button Text="Cancelar"></Button>
+            <Button Text="Crear aviso" TextColor="White" Background="#FFA69A"></Button>
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

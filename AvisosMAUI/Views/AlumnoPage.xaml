@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AvisosMAUI.Views.AlumnoPage" NavigationPage.HasNavigationBar="False"
+             Title="">
+    <VerticalStackLayout>
+        <Grid x:Name="BtnGenerales" Grid.Column="1" BackgroundColor="Transparent" HeightRequest="55">
+
+            <Grid VerticalOptions="Center" HorizontalOptions="Center" ColumnDefinitions="*, Auto" ColumnSpacing="8" Padding="5">
+                <Label x:Name="LblGenerales" Grid.Column="0" Text="AVISOS GENERALES" TextColor="Gray" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+
+                <Border Grid.Column="1" IsVisible="True" Background="Red" Padding="4,0" StrokeShape="RoundRectangle 5" VerticalOptions="Center">
+                    <Label Text="4" TextColor="White" FontSize="13" HorizontalTextAlignment="Center"/>
+                </Border>
+            </Grid>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

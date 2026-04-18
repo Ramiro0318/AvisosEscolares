@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             NavigationPage.HasNavigationBar="False"
-             x:Class="AvisosMAUI.Views.CrearAvisoPage"
+             x:Class="AvisosMAUI.Views.CrearAvisoPage" NavigationPage.HasNavigationBar="False"
              Title="">
     <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, 25, *" RowSpacing="8" VerticalOptions="Fill">
         <Border Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55">
-            <Border.Triggers>
-                <DataTrigger TargetType="Border" Binding="{Binding TipoAviso}" Value="Global">
-                    <Setter Property="BackgroundColor" Value="#FFA69A" />
-                </DataTrigger>
-            </Border.Triggers>
-
             <Label Text="Crear aviso" TextColor="White" FontSize="Title" FontAttributes="Bold" VerticalOptions="Center"/>
         </Border>
 
         <Label  Grid.Row="1" Margin="30,0">Destinatario:</Label>
-        <!--binding del nombre en caso de que no sea global-->
-        <Entry  Grid.Row="2" Margin="30,0" Text="Ramiro Ronaldo Rodríguez Valverde" IsReadOnly="True">
-            <Entry.Triggers>
-                <DataTrigger TargetType="Entry" Binding="{Binding TipoAviso}" Value="Global">
-                    <Setter Property="Text" Value="Global" />
-                </DataTrigger>
-            </Entry.Triggers>
-        </Entry>
+
+        <!--O uno o el otro-->
+        <!--<Entry  Grid.Row="2" Margin="30,0" Text="Ramiro Ronaldo Rodríguez Valverde" IsReadOnly="False"></Entry>-->
+
+        <Picker x:Name="PickerDestinatarios" Grid.Row="2"  Margin="30,0" TitleColor="Gray" TextColor="Black" BackgroundColor="AliceBlue">
+            <Picker.Items>
+                <x:String>Ramiro Ronaldo Rodríguez Valverde</x:String>
+                <x:String>Carlitos García</x:String>
+                <x:String>Daniel Zapata</x:String>
+                <x:String>Zapata 2</x:String>
+            </Picker.Items>
+        </Picker>
 
         <Label  Grid.Row="3" Margin="30,5, 30, 0">Título:</Label>
         <Entry  Grid.Row="4" Margin="30,0" Placeholder="Título"></Entry>
