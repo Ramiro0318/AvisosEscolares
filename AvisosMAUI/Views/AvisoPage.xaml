@@ -11,16 +11,34 @@
                     <Setter Property="BackgroundColor" Value="#FFA69A" />
                 </DataTrigger>
             </Grid.Triggers>
-            
-            <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center" Spacing="8">
-                <Label Text="Pasar a entregar documentación" TextColor="White" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="WordWrap"/>
-                <Border Background="Red" Padding="4,0" StrokeShape="4" IsVisible="True">
+
+            <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                <ImageButton Source="arrow.png" BackgroundColor="Transparent" BorderColor="Transparent"></ImageButton>
+                <Border Background="Red" Padding="4,0" StrokeShape="4" IsVisible="True" HorizontalOptions="End">
+                    <Border.Triggers>
+                        <DataTrigger TargetType="Border" Binding="{Binding Leido}" Value="false">
+                            <Setter Property="IsVisible" Value="False"></Setter>
+                        </DataTrigger>
+                    </Border.Triggers>
                     <Label Text="◉" TextColor="White" FontSize="13"></Label>
                 </Border>
-            </HorizontalStackLayout>
+            </FlexLayout>
         </Grid>
 
-        <Label Text="12 de abril 2024" HorizontalOptions="End" Padding="10,0"></Label>
-        <Label Padding="10,0">Se le solicita a todos los alumnos pasar a entregar su documentación personal de alta, así como su cardex y certificado de la primaria.</Label>
+        <Border Background="White" Padding="12" Stroke="Black" StrokeShape="10" Margin="10, 0">
+            <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto, Auto">
+                <Label Grid.Row="0" Text="Pasar a entregar documentación" Padding="10,0" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="WordWrap"/>
+                <Label Grid.Row="1" Text="12 de abril 2024" HorizontalOptions="End" Padding="10, 0, 10, 10"></Label>
+                <Label Grid.Row="2" Text="Se le solicita a todos los alumnos pasar a entregar su documentación personal de alta, así como su cardex y certificado de la primaria." Padding="10,0" Margin="0, 1, 0, 0"></Label>
+                <Label Grid.Row="3" FontSize="15" HorizontalOptions="End">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Leído a las " />
+                            <Span Text="{Binding HoraLeido}" FontAttributes="Bold" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+        </Border>
     </VerticalStackLayout>
 </ContentPage>

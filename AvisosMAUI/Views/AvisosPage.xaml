@@ -2,12 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="AvisosMAUI.Views.AvisosPage"
+             x:Class="AvisosMAUI.Views.AvisosPage" NavigationPage.HasNavigationBar="False"
              Background="#D2DCE4"
-             Title="Avisos">
+             Title="">
 
     <Grid RowDefinitions="Auto, *">
-
+        
         <Grid Grid.Row="0" ColumnDefinitions="*, *" HeightRequest="50" BackgroundColor="#F0F0F0">
             <Grid x:Name="BtnPersonales" Grid.Column="0" BackgroundColor="#26A69A" HeightRequest="55">
 
@@ -15,13 +15,14 @@
                     <TapGestureRecognizer Tapped="OnTabClicked" />
                 </Grid.GestureRecognizers>
 
-                <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
-                    <Label x:Name="LblPersonales" Text="AVISOS PERSONALES" TextColor="White" FontAttributes="Bold" VerticalOptions="Center"/>
+                <Grid VerticalOptions="Center" HorizontalOptions="Center" ColumnDefinitions="*, Auto" ColumnSpacing="8" Padding="5">
+                    <Label x:Name="LblPersonales" Grid.Column="0" Text="AVISOS PERSONALES" TextColor="White" FontAttributes="Bold" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
 
-                    <Border IsVisible="True" Background="Red" Padding="4,0" StrokeShape="RoundRectangle 5" VerticalOptions="Center">
+                    <Border Grid.Column="1" IsVisible="True" Background="Red" Padding="4,0" StrokeShape="RoundRectangle 5" VerticalOptions="Center">
                         <Label Text="4" TextColor="White" FontSize="13" HorizontalTextAlignment="Center"/>
                     </Border>
-                </HorizontalStackLayout>
+
+                </Grid>
             </Grid>
 
             <Grid x:Name="BtnGenerales" Grid.Column="1" BackgroundColor="Transparent" HeightRequest="55">
@@ -30,19 +31,19 @@
                     <TapGestureRecognizer Tapped="OnTabClicked" />
                 </Grid.GestureRecognizers>
 
-                <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
-                    <Label x:Name="LblGenerales" Text="AVISOS GENERALES" TextColor="Gray" FontAttributes="Bold" VerticalOptions="Center"/>
+                <Grid VerticalOptions="Center" HorizontalOptions="Center" ColumnDefinitions="*, Auto" ColumnSpacing="8" Padding="5">
+                    <Label x:Name="LblGenerales" Grid.Column="0" Text="AVISOS GENERALES" TextColor="Gray" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
 
-                    <Border IsVisible="True" Background="Red" Padding="4,0" StrokeShape="RoundRectangle 5" VerticalOptions="Center">
+                    <Border Grid.Column="1" IsVisible="True" Background="Red" Padding="4,0" StrokeShape="RoundRectangle 5" VerticalOptions="Center">
                         <Label Text="4" TextColor="White" FontSize="13" HorizontalTextAlignment="Center"/>
                     </Border>
-                </HorizontalStackLayout>
+                </Grid>
             </Grid>
         </Grid>
 
         <Grid Grid.Row="1">
             <ScrollView>
-                <VerticalStackLayout x:Name="ViewPersonales" IsVisible="True" Padding="20">
+                <VerticalStackLayout x:Name="ViewPersonales" IsVisible="True" Spacing="8" Padding="20">
                     <CollectionView SelectionMode="Single">
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout Orientation="Vertical" ItemSpacing="9"/>
@@ -75,6 +76,108 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
+
+                    <!--todos esos son solo para visualizar-->
+                    <!--los ultimos son leidos-->
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="#B2F0F8FF" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="#B2F0F8FF" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="#B2F0F8FF" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
                 </VerticalStackLayout>
             </ScrollView>
 
@@ -96,7 +199,7 @@
 
                                     <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
                                         <HorizontalStackLayout Spacing="5">
-                                            <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                            <Label Text="" FontAttributes="Bold"></Label>
                                             <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
                                                 <Border.Triggers>
                                                     <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="True">
@@ -114,107 +217,114 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto">
+                            <Label Grid.Row="0" Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                            <Label Grid.Row="2" Text="- Maestro Carlitos" FontSize="15" HorizontalOptions="End"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                            <Label></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="#B2F0F8FF" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="#B2F0F8FF" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="#B2F0F8FF" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        </Grid>
+                    </Border>
 
-                    <!--todos esos son solo para visualizar-->
-                    <!--<Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="#B2F0F8FF" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="#B2F0F8FF" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="#B2F0F8FF" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                        </Grid>
-                    </Border>-->
 
                 </VerticalStackLayout>
             </ScrollView>
