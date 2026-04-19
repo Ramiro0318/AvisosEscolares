@@ -10,11 +10,22 @@
             <Label Text="Historial de avisos" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" TextColor="White"></Label>
         </HorizontalStackLayout>
 
-
-
         <ScrollView Grid.Row="1">
             <VerticalStackLayout  Spacing="8" Padding="20">
-                <CollectionView SelectionMode="Single">
+                <Border Background="#D2DCE4" Margin="-21, -21, -21, 0">
+                    <VerticalStackLayout Grid.Row="1" Spacing="5" Padding="20, 5, 20, 20" >
+                        <Label>Nombre:</Label>
+                        <Entry Text="Ramiro Ronaldo Rodríguez Valverde" IsReadOnly="True"></Entry>
+                        <Label>Num de control:</Label>
+                        <Entry Text="221G0321" IsReadOnly="True"></Entry>
+                        <Label>Correo:</Label>
+                        <Entry Text="221G0321@rcarbonidera.tecnm.mx" IsReadOnly="True"></Entry>
+                        <BoxView HeightRequest="1" Color="#FF899092" HorizontalOptions="Fill" Margin="-20, 10, -20, -20" ></BoxView>
+                    </VerticalStackLayout>
+                </Border>
+
+
+                <CollectionView SelectionMode="Single" VerticalScrollBarVisibility="Never">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical" ItemSpacing="9"/>
                     </CollectionView.ItemsLayout>
@@ -44,7 +55,7 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-                
+
                 <!--Recuerda quitar los ejemplos-->
                 <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
                     <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
