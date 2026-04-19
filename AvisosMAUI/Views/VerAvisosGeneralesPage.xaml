@@ -24,7 +24,7 @@
                                         <Label Grid.Row="0" Text="{Binding Titulo}" FontAttributes="Bold"></Label>
                                         <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" HorizontalOptions="End" Background="Transparent" BorderColor="Transparent"></ImageButton>
                                         <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Descripcion}" LineBreakMode="WordWrap" ></Label>
-                                        <Label Grid.Row="2" Grid.Column="1" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
+                                        <Label Grid.Row="2" Grid.ColumnSpan="2" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <Span Text="- "></Span>
@@ -42,11 +42,11 @@
                             <Label Grid.Row="0" Text="Entrega de tareas" FontAttributes="Bold"></Label>
                             <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" HorizontalOptions="End" Background="Transparent" BorderColor="Transparent"></ImageButton>
                             <Label Grid.Row="1" Grid.ColumnSpan="2" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                            <Label Grid.Row="2" Grid.Column="1" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
+                            <Label Grid.Row="2" Grid.ColumnSpan="2" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="- "></Span>
-                                        <Span Text="Maestro Carlitos"></Span>
+                                        <Span Text="Maestro Carlitos aak as akdjlak  dasd a"></Span>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>

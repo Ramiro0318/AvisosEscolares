@@ -4,23 +4,24 @@
              x:Class="AvisosMAUI.Views.CrearAvisoPage" NavigationPage.HasNavigationBar="False"
              Title="">
     <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, 25, *" RowSpacing="8" VerticalOptions="Fill">
-        <Border Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55">
-            <Label Text="Crear aviso" TextColor="White" FontSize="Title" FontAttributes="Bold" VerticalOptions="Center"/>
-        </Border>
+        <HorizontalStackLayout Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55" Spacing="10">
+            <ImageButton Source="arrow.png" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="Start"></ImageButton>
+            <Label Text="Crear aviso" TextColor="White" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
+        </HorizontalStackLayout>
 
         <Label  Grid.Row="1" Margin="30,0">Destinatario:</Label>
 
         <!--O uno o el otro-->
-        <Entry  Grid.Row="2" Margin="30,0" Text="Ramiro Ronaldo Rodríguez Valverde" IsReadOnly="False"></Entry>
+        <!--<Entry  Grid.Row="2" Margin="30,0" Text="Ramiro Ronaldo Rodríguez Valverde" IsReadOnly="False"></Entry>-->
 
-        <!--<Picker x:Name="PickerDestinatarios" Grid.Row="2"  Margin="30,0" TitleColor="Gray" TextColor="Black" BackgroundColor="AliceBlue">
+        <Picker x:Name="PickerDestinatarios" Grid.Row="2"  Margin="30,0" TitleColor="Gray" TextColor="Black" BackgroundColor="AliceBlue">
             <Picker.Items>
                 <x:String>Ramiro Ronaldo Rodríguez Valverde</x:String>
                 <x:String>Carlitos García</x:String>
                 <x:String>Daniel Zapata</x:String>
                 <x:String>Zapata 2</x:String>
             </Picker.Items>
-        </Picker>-->
+        </Picker>
 
         <Label  Grid.Row="3" Margin="30,5, 30, 0">Título:</Label>
         <Entry  Grid.Row="4" Margin="30,0" Placeholder="Título"></Entry>

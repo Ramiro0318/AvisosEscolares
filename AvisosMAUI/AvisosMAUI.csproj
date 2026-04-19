@@ -52,6 +52,7 @@
 	  <None Remove="Resources\dots.png" />
 	  <None Remove="Resources\edit.png" />
 	  <None Remove="Resources\trash.png" />
+	  <None Remove="Resources\whiteDots.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -78,6 +79,9 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </MauiImage>
 	  <MauiImage Include="Resources\trash.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiImage>
+	  <MauiImage Include="Resources\whitedots.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </MauiImage>
 	</ItemGroup>

@@ -5,156 +5,147 @@
              Title="">
     <Grid RowDefinitions="Auto, *">
 
-        <Grid Grid.ColumnSpan="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55">
+        <HorizontalStackLayout Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55" Spacing="10">
             <ImageButton Source="arrow.png" HorizontalOptions="Start" BackgroundColor="Transparent" BorderColor="Transparent"></ImageButton>
             <Label Text="Historial de avisos" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" TextColor="White"></Label>
-        </Grid>
+        </HorizontalStackLayout>
 
 
-        <ScrollView Grid.ColumnSpan="1">
+
+        <ScrollView Grid.Row="1">
             <VerticalStackLayout  Spacing="8" Padding="20">
-                <!--<CollectionView SelectionMode="Single">
+                <CollectionView SelectionMode="Single">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical" ItemSpacing="9"/>
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                                <Border.Triggers>
-                                    <DataTrigger TargetType="Border" Binding="{Binding Leido}" Value="True">
-                                        <Setter Property="Background" Value="#B2F0F8FF"></Setter>
-                                    </DataTrigger>
-                                </Border.Triggers>
-
-                                <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                                    <HorizontalStackLayout Spacing="5">
-                                        <Label Text="" FontAttributes="Bold"></Label>
-                                        <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
-                                            <Border.Triggers>
-                                                <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="True">
-                                                    <Setter Property="IsVisible" Value="True"></Setter>
-                                                </DataTrigger>
-                                            </Border.Triggers>
-
-                                            <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                        </Border>
-                                    </HorizontalStackLayout>
-                                    <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                            <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="RoundRectangle 10">
+                                <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
+                                    <Label Grid.Row="0" Text="{Binding Titulo}" FontAttributes="Bold" />
+                                    <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" HorizontalOptions="End" BackgroundColor="Transparent"></ImageButton>
+                                    <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Contenido}" LineBreakMode="WordWrap" />
+                                    <Label Grid.Row="2" Grid.ColumnSpan="2" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="13" HorizontalOptions="End">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Visto}" Value="False">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Visto a las: " />
+                                                <Span Text="{Binding HoraVisto}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
                                 </Grid>
-
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                </CollectionView>-->
+                </CollectionView>
+                
+                <!--Recuerda quitar los ejemplos-->
                 <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
-                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto">
+                    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
                         <Label Grid.Row="0" Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                        <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                        <Label Grid.Row="2" Text="- Maestro Carlitos" FontSize="15" HorizontalOptions="End"></Label>
+                        <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" HorizontalOptions="End" Background="Transparent" BorderColor="Transparent"></ImageButton>
+                        <Label Grid.Row="1" Grid.ColumnSpan="2" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        <Label Grid.Row="2" Grid.ColumnSpan="2" IsVisible="True" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Visto}" Value="False">
+                                    <Setter Property="IsVisible" Value="False"></Setter>
+                                </DataTrigger>
+                            </Label.Triggers>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Visto a las: "></Span>
+                                    <Span Text="10:38 AM"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                     </Grid>
                 </Border>
-                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                        <HorizontalStackLayout Spacing="5">
-                            <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                            <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                            </Border>
-                        </HorizontalStackLayout>
-                        <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                        <Label></Label>
+                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
+                    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
+                        <Label Grid.Row="0" Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                        <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" HorizontalOptions="End" Background="Transparent" BorderColor="Transparent"></ImageButton>
+                        <Label Grid.Row="1" Grid.ColumnSpan="2" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        <Label Grid.Row="2" Grid.ColumnSpan="2" IsVisible="True" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Visto}" Value="False">
+                                    <Setter Property="IsVisible" Value="False"></Setter>
+                                </DataTrigger>
+                            </Label.Triggers>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Visto a las: "></Span>
+                                    <Span Text="10:38 AM"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                     </Grid>
                 </Border>
-                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                        <HorizontalStackLayout Spacing="5">
-                            <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                            <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                            </Border>
-                        </HorizontalStackLayout>
-                        <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
+                    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
+                        <Label Grid.Row="0" Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                        <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" HorizontalOptions="End" Background="Transparent" BorderColor="Transparent"></ImageButton>
+                        <Label Grid.Row="1" Grid.ColumnSpan="2" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        <Label Grid.Row="2" Grid.ColumnSpan="2" IsVisible="True" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Visto}" Value="False">
+                                    <Setter Property="IsVisible" Value="False"></Setter>
+                                </DataTrigger>
+                            </Label.Triggers>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Visto a las: "></Span>
+                                    <Span Text="10:38 AM"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                     </Grid>
                 </Border>
-                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                        <HorizontalStackLayout Spacing="5">
-                            <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                            <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                            </Border>
-                        </HorizontalStackLayout>
-                        <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
+                    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
+                        <Label Grid.Row="0" Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                        <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" HorizontalOptions="End" Background="Transparent" BorderColor="Transparent"></ImageButton>
+                        <Label Grid.Row="1" Grid.ColumnSpan="2" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        <Label Grid.Row="2" Grid.ColumnSpan="2" IsVisible="True" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Visto}" Value="False">
+                                    <Setter Property="IsVisible" Value="False"></Setter>
+                                </DataTrigger>
+                            </Label.Triggers>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Visto a las: "></Span>
+                                    <Span Text="10:38 AM"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                     </Grid>
                 </Border>
-                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                        <HorizontalStackLayout Spacing="5">
-                            <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                            <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
-                                <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                            </Border>
-                        </HorizontalStackLayout>
-                        <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
+                    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
+                        <Label Grid.Row="0" Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                        <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" HorizontalOptions="End" Background="Transparent" BorderColor="Transparent"></ImageButton>
+                        <Label Grid.Row="1" Grid.ColumnSpan="2" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                        <Label Grid.Row="2" Grid.ColumnSpan="2" IsVisible="True" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Visto}" Value="False">
+                                    <Setter Property="IsVisible" Value="False"></Setter>
+                                </DataTrigger>
+                            </Label.Triggers>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Visto a las: "></Span>
+                                    <Span Text="10:38 AM"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                     </Grid>
                 </Border>
-                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                        <HorizontalStackLayout Spacing="5">
-                            <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                            <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
-                                <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                            </Border>
-                        </HorizontalStackLayout>
-                        <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                    </Grid>
-                </Border>
-                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                        <HorizontalStackLayout Spacing="5">
-                            <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                            <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
-                                <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                            </Border>
-                        </HorizontalStackLayout>
-                        <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                    </Grid>
-                </Border>
-                <Border Background="#B2F0F8FF" Padding="12" Stroke="Black" StrokeShape="20">
-                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                        <HorizontalStackLayout Spacing="5">
-                            <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                            <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
-                                <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                            </Border>
-                        </HorizontalStackLayout>
-                        <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                    </Grid>
-                </Border>
-                <Border Background="#B2F0F8FF" Padding="12" Stroke="Black" StrokeShape="20">
-                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                        <HorizontalStackLayout Spacing="5">
-                            <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                            <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
-                                <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                            </Border>
-                        </HorizontalStackLayout>
-                        <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                    </Grid>
-                </Border>
-                <Border Background="#B2F0F8FF" Padding="12" Stroke="Black" StrokeShape="20">
-                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                        <HorizontalStackLayout Spacing="5">
-                            <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                            <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
-                                <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                            </Border>
-                        </HorizontalStackLayout>
-                        <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                    </Grid>
-                </Border>
-
 
             </VerticalStackLayout>
         </ScrollView>
