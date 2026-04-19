@@ -1,6 +1,0 @@
-@AvisosAPI_HostAddress = http://localhost:5044
-
-GET {{AvisosAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
