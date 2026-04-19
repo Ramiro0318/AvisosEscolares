@@ -4,12 +4,13 @@
              x:Class="AvisosMAUI.Views.CrearAvisoGeneralPage" NavigationPage.HasNavigationBar="False"
              Title="">
     <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, 25, *" RowSpacing="8" VerticalOptions="Fill">
-        <Border Grid.Row="0" BackgroundColor="#FFA69A" Padding="10,0" HeightRequest="55">
-            <Label Text="Crear aviso" TextColor="White" FontSize="Title" FontAttributes="Bold" VerticalOptions="Center"/>
-        </Border>
+        <HorizontalStackLayout Grid.Row="0" BackgroundColor="#FFA69A" Padding="10,0" HeightRequest="55" Spacing="10">
+            <ImageButton Source="arrow.png" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="Start"></ImageButton>
+            <Label Text="Crear aviso" TextColor="White" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
+        </HorizontalStackLayout>
 
         <Label  Grid.Row="1" Margin="30,0">Destinatario:</Label>
-        <Entry  Grid.Row="2" Margin="30,0" Text="Ramiro Ronaldo Rodríguez Valverde" IsReadOnly="True"></Entry>
+        <Entry  Grid.Row="2" Margin="30,0" Text="🌏 General" IsReadOnly="True" TextColor="Purple" Background="WhiteSmoke"></Entry>
 
         <Label  Grid.Row="3" Margin="30,0">Fecha de vencimiento:</Label>
         <Border Grid.Row="4" Margin="30,0" BackgroundColor="AliceBlue" StrokeShape="RoundRectangle 4" Stroke="Transparent"></Border>

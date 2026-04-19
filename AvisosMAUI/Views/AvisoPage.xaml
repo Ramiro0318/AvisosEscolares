@@ -5,13 +5,6 @@
              Title="" Background="AliceBlue">
     <VerticalStackLayout Spacing="10">
         <Grid BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55">
-            <Grid.Triggers>
-                <!--Obvio la propiedad es sugerencia-->
-                <DataTrigger TargetType="Grid" Binding="{Binding TipoAviso}" Value="Global">
-                    <Setter Property="BackgroundColor" Value="#FFA69A" />
-                </DataTrigger>
-            </Grid.Triggers>
-
             <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
                 <ImageButton Source="arrow.png" BackgroundColor="Transparent" BorderColor="Transparent"></ImageButton>
                 <Border Background="Red" Padding="4,0" StrokeShape="4" IsVisible="True" HorizontalOptions="End">

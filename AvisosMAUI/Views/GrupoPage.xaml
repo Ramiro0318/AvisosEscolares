@@ -14,7 +14,7 @@
 
             <Entry Grid.Column="0" Text="Grupo de clases" IsReadOnly="True" TextColor="White" FontSize="20" FontAttributes="Bold" Background="Transparent" VerticalOptions="Center"/>
             <ImageButton Grid.Column="1" Source="edit.png" BackgroundColor="Transparent" HeightRequest="40" WidthRequest="40" Margin="0,0,10,0"/>
-            <ImageButton Grid.Column="2" Source="dots.png" BackgroundColor="Transparent" HeightRequest="40" WidthRequest="40" Clicked="OnToggleMenuClicked" />
+            <ImageButton Grid.Column="2" Source="dots.png" BackgroundColor="Transparent" BorderColor="Transparent" HeightRequest="40" WidthRequest="40" Clicked="OnToggleMenuClicked" />
         </Grid>
 
         <Grid Grid.Row="1">
@@ -27,7 +27,7 @@
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItems Mode="Reveal">
-                                    <SwipeItem Text="Enviar aviso" BackgroundColor="#26A69A"  />
+                                    <SwipeItem Text="Ver avisos" BackgroundColor="#26A69A"  />
                                     <SwipeItem Text="Editar" BackgroundColor="LightGray"  />
                                     <SwipeItem Text="Eliminar" BackgroundColor="Red" />
                                 </SwipeItems>

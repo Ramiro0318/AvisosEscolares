@@ -5,19 +5,16 @@
              x:Class="AvisosMAUI.Views.RegistrosPendientesPage"
              Title="">
     <Grid RowDefinitions="Auto, Auto, *">
-        <HorizontalStackLayout Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55" Spacing="5">
-            <Label Text="Solicitudes de registro" TextColor="White" FontSize="Title" VerticalTextAlignment="Center" FontAttributes="Bold" Background="Transparent" WidthRequest="260"/>
+        <HorizontalStackLayout Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55" Spacing="10">
+            <ImageButton Source="arrow.png" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="Start"></ImageButton>
+            <Label Text="Solicitudes de registro" TextColor="White" FontSize="20" VerticalTextAlignment="Center" FontAttributes="Bold" Background="Transparent" WidthRequest="260"/>
         </HorizontalStackLayout>
-
-        <Grid Grid.Row="1" Margin="30,10" HorizontalOptions="Fill">
-            <Button Text="&lt; Volver al grupo" FontSize="17" HeightRequest="40" />
-        </Grid>
 
         <Grid Grid.Row="2" RowDefinitions="*" Margin="20, 0">
             <CollectionView x:Name="ListaAlumnos" SelectionMode="Single">
 
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>

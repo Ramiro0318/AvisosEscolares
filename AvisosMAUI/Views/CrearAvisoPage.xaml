@@ -11,16 +11,16 @@
         <Label  Grid.Row="1" Margin="30,0">Destinatario:</Label>
 
         <!--O uno o el otro-->
-        <!--<Entry  Grid.Row="2" Margin="30,0" Text="Ramiro Ronaldo Rodríguez Valverde" IsReadOnly="False"></Entry>-->
+        <Entry  Grid.Row="2" Margin="30,0" Text="Ramiro Ronaldo Rodríguez Valverde" IsReadOnly="False"></Entry>
 
-        <Picker x:Name="PickerDestinatarios" Grid.Row="2"  Margin="30,0" TitleColor="Gray" TextColor="Black" BackgroundColor="AliceBlue">
+        <!--<Picker x:Name="PickerDestinatarios" Grid.Row="2"  Margin="30,0" TitleColor="Gray" TextColor="Black" BackgroundColor="AliceBlue">
             <Picker.Items>
                 <x:String>Ramiro Ronaldo Rodríguez Valverde</x:String>
                 <x:String>Carlitos García</x:String>
                 <x:String>Daniel Zapata</x:String>
                 <x:String>Zapata 2</x:String>
             </Picker.Items>
-        </Picker>
+        </Picker>-->
 
         <Label  Grid.Row="3" Margin="30,5, 30, 0">Título:</Label>
         <Entry  Grid.Row="4" Margin="30,0" Placeholder="Título"></Entry>
