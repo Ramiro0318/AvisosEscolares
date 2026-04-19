@@ -34,4 +34,8 @@ public partial class AvisosPage : ContentPage
 
         }
     }
+    private void OnToggleMenuClicked(object sender, EventArgs e)
+    {
+        MenuDesplegable.IsVisible = !MenuDesplegable.IsVisible;
+    }
 }

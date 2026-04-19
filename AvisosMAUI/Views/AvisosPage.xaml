@@ -8,7 +8,7 @@
 
     <Grid RowDefinitions="Auto, *">
         
-        <Grid Grid.Row="0" ColumnDefinitions="*, *" HeightRequest="50" BackgroundColor="#F0F0F0">
+        <Grid Grid.Row="0" ColumnDefinitions="*, *, auto" HeightRequest="50" BackgroundColor="#F0F0F0">
             <Grid x:Name="BtnPersonales" Grid.Column="0" BackgroundColor="#26A69A" HeightRequest="55">
 
                 <Grid.GestureRecognizers>
@@ -39,6 +39,7 @@
                     </Border>
                 </Grid>
             </Grid>
+            <ImageButton Grid.Column="2" Source="dots.png" BackgroundColor="Transparent" BorderColor="Transparent" HeightRequest="55" WidthRequest="22" HorizontalOptions="End" Clicked="OnToggleMenuClicked" />
         </Grid>
 
         <Grid Grid.Row="1">
@@ -87,7 +88,14 @@
                                     <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
                                 </Border>
                             </HorizontalStackLayout>
-                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End">
+                                <!--<Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Recibido a las " />
+                                        <Span Text="12:AM"/>
+                                    </FormattedString>
+                                </Label.FormattedText>-->
+                            </Label>
                         </Grid>
                     </Border>
                     <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
@@ -181,6 +189,16 @@
                 </VerticalStackLayout>
             </ScrollView>
 
+            <Border x:Name="MenuDesplegable" IsVisible="False" BackgroundColor="White" Stroke="LightGray" StrokeShape="RoundRectangle 8" WidthRequest="180" HorizontalOptions="End" VerticalOptions="Start" Margin="0,5,15,0" ZIndex="10" InputTransparent="False">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="5,5" Radius="10" Opacity="0.1" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="0">
+                    <Button Text="Salir" BackgroundColor="Transparent" TextColor="Red" HorizontalOptions="Fill"/>
+                </VerticalStackLayout>
+            </Border>
+            
             <ScrollView>
                 <VerticalStackLayout x:Name="ViewGenerales" IsVisible="False" Spacing="8" Padding="20">
                     <CollectionView SelectionMode="Single">
