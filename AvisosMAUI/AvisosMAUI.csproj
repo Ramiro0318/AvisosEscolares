@@ -51,6 +51,7 @@
 	  <None Remove="Resources\arrow.png" />
 	  <None Remove="Resources\dots.png" />
 	  <None Remove="Resources\edit.png" />
+	  <None Remove="Resources\trash.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -74,6 +75,9 @@
 
 	<ItemGroup>
 	  <MauiImage Include="Resources\dots.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiImage>
+	  <MauiImage Include="Resources\trash.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </MauiImage>
 	</ItemGroup>
@@ -107,6 +111,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\RegistrosPendientesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\VerAvisosGeneralesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

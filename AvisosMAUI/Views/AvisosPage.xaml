@@ -190,29 +190,19 @@
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                                    <Border.Triggers>
-                                        <DataTrigger TargetType="Border" Binding="{Binding Leido}" Value="True">
-                                            <Setter Property="Background" Value="#B2F0F8FF"></Setter>
-                                        </DataTrigger>
-                                    </Border.Triggers>
-
-                                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                                        <HorizontalStackLayout Spacing="5">
-                                            <Label Text="" FontAttributes="Bold"></Label>
-                                            <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="False">
-                                                <Border.Triggers>
-                                                    <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="True">
-                                                        <Setter Property="IsVisible" Value="True"></Setter>
-                                                    </DataTrigger>
-                                                </Border.Triggers>
-
-                                                <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                            </Border>
-                                        </HorizontalStackLayout>
-                                        <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
+                                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto">
+                                        <Label Grid.Row="0" Text="{Binding Titulo}" FontAttributes="Bold"></Label>
+                                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Descripcion}" LineBreakMode="WordWrap" ></Label>
+                                        <Label Grid.Row="2" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="- "></Span>
+                                                    <Span Text="{Binding Autor}"></Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
                                     </Grid>
-
                                 </Border>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
@@ -221,7 +211,7 @@
                         <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto">
                             <Label Grid.Row="0" Text="Entrega de tareas" FontAttributes="Bold"></Label>
                             <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                            <Label Grid.Row="2" Text="- Maestro Carlitos" FontSize="15" HorizontalOptions="End"></Label>
+                            <Label Grid.Row="2" Text="- Maestro Carlitos"  TextColor="DimGray" FontSize="15" HorizontalOptions="End"></Label>
                         </Grid>
                     </Border>
                 </VerticalStackLayout>
