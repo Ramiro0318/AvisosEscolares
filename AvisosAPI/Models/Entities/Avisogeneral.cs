@@ -17,9 +17,9 @@ public partial class Avisogeneral
 
     public DateTime FechaCreacion { get; set; }
 
-    public sbyte Recibido { get; set; }
+    public bool Recibido { get; set; }
 
-    public sbyte Eliminado { get; set; }
+    public bool Eliminado { get; set; }
 
     public virtual Maestro IdMaestroNavigation { get; set; } = null!;
 }

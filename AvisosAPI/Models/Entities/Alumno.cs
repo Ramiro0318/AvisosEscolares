@@ -11,7 +11,7 @@ public partial class Alumno
 
     public string Nombre { get; set; } = null!;
 
-    public string Correo { get; set; } = null!;
+    public string? Correo { get; set; }
 
     public string Contraseña { get; set; } = null!;
 
@@ -19,7 +19,7 @@ public partial class Alumno
 
     public int? IdClase { get; set; }
 
-    public sbyte Eliminado { get; set; }
+    public bool Eliminado { get; set; }
 
     public virtual ICollection<Avisopersonal> Avisopersonal { get; set; } = new List<Avisopersonal>();
 

@@ -19,9 +19,9 @@ public partial class Avisopersonal
 
     public DateTime FechaCreacion { get; set; }
 
-    public sbyte Recibido { get; set; }
+    public bool Recibido { get; set; }
 
-    public sbyte Eliminado { get; set; }
+    public bool Eliminado { get; set; }
 
     public virtual Alumno IdAlumnoNavigation { get; set; } = null!;
 
