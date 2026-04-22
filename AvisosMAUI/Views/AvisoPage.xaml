@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AvisosMAUI.Views.AvisoPage" NavigationPage.HasNavigationBar="False"
-             Title="" Background="AliceBlue">
+             Title="" Background="#FFF0F8">
     <VerticalStackLayout Spacing="10">
         <Grid BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55">
             <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">

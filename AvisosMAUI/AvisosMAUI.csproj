@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net10.0-android</TargetFrameworks>
@@ -48,11 +48,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\arrow.png" />
-	  <None Remove="Resources\dots.png" />
-	  <None Remove="Resources\edit.png" />
-	  <None Remove="Resources\trash.png" />
-	  <None Remove="Resources\whiteDots.png" />
+		<None Remove="Resources\AppIcon\appicon.svg" />
+		<None Remove="Resources\arrow.png" />
+		<None Remove="Resources\dots.png" />
+		<None Remove="Resources\edit.png" />
+		<None Remove="Resources\Splash\logo_app.png" />
+		<None Remove="Resources\Splash\logo_app_128.svg" />
+		<None Remove="Resources\trash.png" />
+		<None Remove="Resources\whiteDots.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -62,64 +65,76 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="ViewModels\" />
+		<Folder Include="ViewModels\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiImage Include="Resources\arrow.png">
+	  <MauiIcon Include="Resources\AppIcon\appicon.svg">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </MauiImage>
-	  <MauiImage Include="Resources\edit.png">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </MauiImage>
+	  </MauiIcon>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiImage Include="Resources\dots.png">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </MauiImage>
-	  <MauiImage Include="Resources\trash.png">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </MauiImage>
-	  <MauiImage Include="Resources\whitedots.png">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </MauiImage>
+		<MauiImage Include="Resources\arrow.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Include="Resources\edit.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiImage>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\AlumnoPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\AprobarPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\AvisoPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\AvisosPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CrearAvisoGeneralPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CrearAvisoPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\EliminarView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\GrupoPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\RegistroPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\RegistrosPendientesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\VerAvisosGeneralesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+		<MauiImage Include="Resources\dots.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Include="Resources\trash.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Include="Resources\whitedots.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiImage>
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiSplashScreen Include="Resources\Splash\logo_app_128.svg" Color="#26A69A" BaseSize="128,128">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiSplashScreen>
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiXaml Update="Views\AlumnoPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\AprobarPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\AvisoPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\AvisosPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CrearAvisoGeneralPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CrearAvisoPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\EliminarView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\GrupoPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\RegistroPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\RegistrosPendientesPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\VerAvisosGeneralesPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 	</ItemGroup>
 
 </Project>
