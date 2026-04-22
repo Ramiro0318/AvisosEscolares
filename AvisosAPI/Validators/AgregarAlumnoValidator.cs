@@ -12,7 +12,8 @@ namespace AvisosAPI.Validators
         public AgregarAlumnoValidator(Repository<Alumno> repos)
         {
             RuleFor(x => x.Correo).EmailAddress().WithMessage("Ingrese un correo válido").When(x => !string.IsNullOrWhiteSpace(x.Correo)).MaximumLength(100).WithMessage("Ingrese un correo de máximo 100 caracteres");
-            RuleFor(x => x.NumControl).NotEmpty().WithMessage("Ingrese un número de control").Length(6).WithMessage("El número de control  debe ser de 6 digitos.").Must(NumControlRepetido).WithMessage("Ya existe un alumno con el mismo número de control"); ;
+            RuleFor(x => x.NumControl).NotEmpty().WithMessage("Ingrese un número de control").Length(6).WithMessage("El número de control  debe ser de 6 digitos.").Must(NumControlRepetido).WithMessage("Ya existe un alumno con el mismo número de control");
+            RuleFor(x=>x.IdClase).GreaterThan(0).WithMessage("Seleccione una clase");
             RuleFor(x => x.Nombre).NotEmpty().WithMessage("Ingrese un nombre del alumno").WithMessage("Ingrese un nombre de máximo 100 caracteres");
             RuleFor(x => x.Contraseña).NotEmpty().WithMessage("Ingrese una contraseña").MaximumLength(50).WithMessage("Ingrese una contraseña de máximo 50 caracteres");
             this.repos = repos;

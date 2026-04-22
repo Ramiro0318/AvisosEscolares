@@ -39,7 +39,8 @@
         public int Id { get; set;  }
         public string Titulo { get; set; } = null!;
         public DateTime? FechaLectura { get; set; }
-        public bool Nuevo { get; set; }
+        public DateTime FechaCreacion { get; set; }
+        //public bool Nuevo { get; set; }
     }
     public class AvisoPersonalDetallesDTO
     {

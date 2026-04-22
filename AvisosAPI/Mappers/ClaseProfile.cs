@@ -8,7 +8,7 @@ namespace AvisosAPI.Mappers
     {
         public ClaseProfile()
         {
-            CreateMap<CrearClaseDTO, Clase>();
+            CreateMap<AgregarClaseDTO, Clase>();
             CreateMap<EditarClaseDTO, Clase>();
             CreateMap<Clase, ClaseDTO>();
         }

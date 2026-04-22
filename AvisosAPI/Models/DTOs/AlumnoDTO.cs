@@ -13,6 +13,7 @@
     }
     public class AgregarAlumnoDTO
     {
+        public int IdClase { get; set; } 
         public string NumControl { get; set; } = null!;
         public string Nombre { get; set; } = null!;
         public string Correo { get; set; } = null!;

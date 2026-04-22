@@ -2,12 +2,12 @@
 {
     public class AgregarClaseDTO
     {
-        public int IdMaestro { get; set;  }
+        public int IdMaestro { get; set; }
         public string Nombre { get; set; } = null!;
     }
     public class EditarClaseDTO: AgregarClaseDTO
     {
-
+        public int Id { get; set; }
     }
     public class ClaseDTO
     {
