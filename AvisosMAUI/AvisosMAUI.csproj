@@ -126,6 +126,9 @@
 		<MauiXaml Update="Views\GrupoPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Views\LoadingPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Views\RegistroPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:views="clr-namespace:AvisosMAUI.Views"             
              x:Class="AvisosMAUI.Views.AvisosPage" NavigationPage.HasNavigationBar="False"
              Background="#D2DCE4"
              Title="">
 
     <Grid RowDefinitions="Auto, *">
-
+        
         <Grid Grid.Row="0" ColumnDefinitions="*, *, auto" HeightRequest="50" BackgroundColor="#F0F0F0">
             <Grid x:Name="BtnPersonales" Grid.Column="0" BackgroundColor="#26A69A" HeightRequest="55">
 
@@ -235,5 +235,6 @@
                 </VerticalStackLayout>
             </ScrollView>
         </Grid>
+        <views:LoadingPage Grid.RowSpan="2" ZIndex="10"></views:LoadingPage>
     </Grid>
 </ContentPage>

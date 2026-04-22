@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             NavigationPage.HasNavigationBar="False"
-             x:Class="AvisosMAUI.Views.RegistrosPendientesPage"
+             xmlns:views="clr-namespace:AvisosMAUI.Views"
+             x:Class="AvisosMAUI.Views.RegistrosPendientesPage" NavigationPage.HasNavigationBar="False"
              Title="">
     <Grid RowDefinitions="Auto, Auto, *">
         <HorizontalStackLayout Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55" Spacing="10">
@@ -10,7 +10,7 @@
             <Label Text="Solicitudes de registro" TextColor="White" FontSize="20" VerticalTextAlignment="Center" FontAttributes="Bold" Background="Transparent" WidthRequest="260"/>
         </HorizontalStackLayout>
 
-        <Grid Grid.Row="2" RowDefinitions="*" Margin="20, 0">
+        <Grid Grid.Row="2" RowDefinitions="*" Margin="20, 5">
             <CollectionView x:Name="ListaAlumnos" SelectionMode="Single">
 
                 <CollectionView.ItemsLayout>
@@ -40,8 +40,7 @@
                 </CollectionView.ItemTemplate>
 
             </CollectionView>
-
-
         </Grid>
+        <views:LoadingPage Grid.RowSpan="3" ZIndex="10"></views:LoadingPage>
     </Grid>
 </ContentPage>

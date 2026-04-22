@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AvisosMAUI.Views.LoadingPage">
+    <Grid IsVisible="True" Background="#B2E1F0FC" Padding="30">
+        <Grid.Triggers>
+            <DataTrigger TargetType="Grid" Binding="{Binding Cargando}" Value="True">
+                <Setter Property="IsVisible" Value="True"></Setter>
+            </DataTrigger>
+        </Grid.Triggers>
+        <VerticalStackLayout Spacing="20" VerticalOptions="Center" HorizontalOptions="Center">
+
+            <ActivityIndicator IsRunning="True" Color="#26A69A" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="70" WidthRequest="70" />
+
+            <Label Text="Cargando avisos..." FontSize="19" HorizontalOptions="Center" TextColor="Black" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentView>
