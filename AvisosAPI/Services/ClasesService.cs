@@ -24,10 +24,10 @@ namespace AvisosAPI.Services
             {
                 throw new KeyNotFoundException();
             }
-            if (clase.IdMaestro != userMaestro)
-            {
-                throw new AccessViolationException();
-            }
+            //if (clase.IdMaestro != userMaestro)
+            //{
+            //    throw new AccessViolationException();
+            //}
             var claseDTO = mapper.Map<ClaseDTO>(clase);    
             claseDTO.ListaAlumnos = clase.Alumno.Where(x=>x.Eliminado == false).Select(x=>mapper.Map<AlumnoListaDTO>(x)).ToList();
             return claseDTO;
@@ -44,15 +44,15 @@ namespace AvisosAPI.Services
         }
         public void EditarClase(EditarClaseDTO dto, int userMaestro)
         {
-            var clase = repository.Query().Include(x => x.Alumno).FirstOrDefault(x => x.Id == dto.);
+            var clase = repository.Query().Include(x => x.Alumno).FirstOrDefault(x => x.Id == dto.Id);
             if (clase == null)
             {
                 throw new KeyNotFoundException();
             }
-            if (clase.IdMaestro != userMaestro)
-            {
-                throw new AccessViolationException();
-            }
+            //if (clase.IdMaestro != userMaestro)
+            //{
+            //    throw new AccessViolationException();
+            //}
             mapper.Map(dto, clase);
             repository.Update(clase);
         }

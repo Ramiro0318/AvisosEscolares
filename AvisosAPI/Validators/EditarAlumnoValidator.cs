@@ -12,8 +12,8 @@ namespace AvisosAPI.Validators
         public EditarAlumnoValidator(Repository<Alumno> repos)
         {
             RuleFor(x => x.Correo).EmailAddress().WithMessage("Ingrese un correo válido").When(x => !string.IsNullOrWhiteSpace(x.Correo)).MaximumLength(100).WithMessage("Ingrese un correo de máximo 100 caracteres");
-            RuleFor(x => x.NumControl).NotEmpty().WithMessage("Ingrese un número de control").Length(6).WithMessage("El número de control debe ser de 6 digitos.");
-            RuleFor(x => x.Nombre).NotEmpty().WithMessage("Ingrese un nombre del alumno").WithMessage("Ingrese un nombre de máximo 100 caracteres");
+            RuleFor(x => x.NumControl).NotEmpty().WithMessage("Ingrese un número de control").Matches(@"^\S+$").WithMessage("El número de control no puede contener espacios vacíos").Length(6).WithMessage("El número de control debe ser de 6 digitos.");
+            RuleFor(x => x.Nombre).NotEmpty().WithMessage("Ingrese un nombre del alumno").WithMessage("Ingrese un nombre de máximo 100 caracteres").Matches(@"^[^\d]+$").WithMessage("El nombre no puede contener números");
             RuleFor(x => x.Contraseña).NotEmpty().WithMessage("Ingrese una contraseña").MaximumLength(50).WithMessage("Ingrese una contraseña de máximo 50 caracteres");
             RuleFor(x => x).Must(NumControlRepetido).WithMessage("Ya existe un alumno con el mismo número de control");
             this.repos = repos;

@@ -28,10 +28,10 @@ namespace AvisosAPI.Services
             {
                 throw new KeyNotFoundException();
             }
-            if (alumno.IdClaseNavigation?.IdMaestro != userMaestro)
-            {
-                throw new AccessViolationException();
-            }
+            //if (alumno.IdClaseNavigation?.IdMaestro != userMaestro)
+            //{
+            //    throw new AccessViolationException();
+            //}
             var alumnoDTO = mapper.Map<AlumnoDetallesDTO>(alumno);
             alumnoDTO.ListaAvisosAlumno = alumno.Avisopersonal.Where(x => x.Eliminado == false).Select(x => mapper.Map<AvisoPersonalMaestroDTO>(x)).ToList();
             return alumnoDTO;
@@ -44,10 +44,10 @@ namespace AvisosAPI.Services
             {
                 throw new KeyNotFoundException();
             }
-            if (clase.IdMaestro != userMaestro)
-            {
-                throw new AccessViolationException();
-            }
+            //if (clase.IdMaestro != userMaestro)
+            //{
+            //    throw new AccessViolationException();
+            //}
             var alumno = mapper.Map<Alumno>(dto);
             repository.Insert(alumno);
         }
@@ -58,10 +58,10 @@ namespace AvisosAPI.Services
             {
                 throw new KeyNotFoundException();
             }
-            if (alumno.IdClaseNavigation?.IdMaestro != userMaestro)
-            {
-                throw new AccessViolationException();
-            }
+            //if (alumno.IdClaseNavigation?.IdMaestro != userMaestro)
+            //{
+            //    throw new AccessViolationException();
+            //}
 
             mapper.Map(dto, alumno);
             repository.Update(alumno);
@@ -74,10 +74,10 @@ namespace AvisosAPI.Services
             {
                 throw new KeyNotFoundException();
             }
-            if (alumno.IdClaseNavigation?.IdMaestro != userMaestro)
-            {
-                throw new AccessViolationException();
-            }
+            //if (alumno.IdClaseNavigation?.IdMaestro != userMaestro)
+            //{
+            //    throw new AccessViolationException();
+            //}
             alumno.Eliminado = true;
             repository.Update(alumno);  
         }

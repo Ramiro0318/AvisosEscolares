@@ -48,7 +48,7 @@
         public string Titulo { get; set; } = null!;
         public string Contenido { get; set; } = null!;
         public DateTime FechaCreacion { get; set; }
-        public DateTime FechaLectura { get; set; }
+        public DateTime? FechaLectura { get; set; }
         public string Maestro { get; set; } = null!;
     }
 

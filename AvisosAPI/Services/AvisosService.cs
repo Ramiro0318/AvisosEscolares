@@ -38,7 +38,15 @@ namespace AvisosAPI.Services
                 {
                     dto.Nuevo = false;
                 }
-                return dto;
+                if (x.FechaLectura == null)
+                {
+                    dto.Leido = false;
+                }
+                else
+                {
+                    dto.Leido = true;
+                }
+                    return dto;
             }).ToList();
 
             foreach (var aviso in avisos)
@@ -60,12 +68,12 @@ namespace AvisosAPI.Services
             {
                 throw new KeyNotFoundException();
             }
-            if (alumno.Id != userAlumno)
-            {
-                throw new AccessViolationException();
-            }
-            var avisos = avisoGeneralRepository.Query().Where(x => x.Eliminado == false && x.FechaVigencia >= DateTime.Now).ToList();
-            var lista = avisos.Select(x => 
+            //if (alumno.Id != userAlumno)
+            //{
+            //    throw new AccessViolationException();
+            //}
+            var avisos = avisoGeneralRepository.Query().Include(x=>x.IdMaestroNavigation).Where(x => x.Eliminado == false && x.FechaVigencia.Date >= DateTime.Now.Date).ToList();
+            var lista = avisos.Select(x =>
             {
                 var dto = mapper.Map<AvisoGeneralDTO>(x);
                 if (alumno.UltimaVistaBandeja == null || x.FechaCreacion >= alumno.UltimaVistaBandeja)
@@ -76,9 +84,11 @@ namespace AvisosAPI.Services
                 {
                     dto.Nuevo = false;
                 }
+                dto.Maestro = x.IdMaestroNavigation.Nombre;
                 return dto;
             }).ToList();
             alumno.UltimaVistaBandeja = DateTime.Now;
+            alumnoRepository.Update(alumno);
             return lista;
         }
 
@@ -89,11 +99,11 @@ namespace AvisosAPI.Services
             {
                 throw new KeyNotFoundException();
             }
-            if (maestro.Id != userMaestro)
-            {
-                throw new AccessViolationException();
-            }
-            var avisos = avisoGeneralRepository.Query().Where(x => x.Eliminado == false && x.FechaVigencia >= DateTime.Now).ToList();
+            //if (maestro.Id != userMaestro)
+            //{
+            //    throw new AccessViolationException();
+            //}
+            var avisos = avisoGeneralRepository.Query().Include(x=>x.IdMaestroNavigation).Where(x => x.Eliminado == false && x.FechaVigencia.Date >= DateTime.Now.Date).ToList();
             var lista = avisos.Select(x =>
             {
                 var dto = mapper.Map<AvisoGeneralDTO>(x);
@@ -105,41 +115,48 @@ namespace AvisosAPI.Services
                 {
                     dto.Nuevo = false;
                 }
+                dto.Maestro = x.IdMaestroNavigation.Nombre;
                 return dto;
             }).ToList();
             maestro.UltimaVistaBandeja = DateTime.Now;
+            maestroRepository.Update(maestro);
             return lista;
         }
 
         public AvisoPersonalDetallesDTO VerDetallesAvisoPersonalAlumno(int idAviso, int userAlumno)
         {
-            var aviso = avisoPersonalRepository.Query().FirstOrDefault(x => x.Id == idAviso && x.Eliminado == false);
+            var aviso = avisoPersonalRepository.Query().Include(x=>x.IdMaestroNavigation).FirstOrDefault(x => x.Id == idAviso && x.Eliminado == false);
             if (aviso == null)
             {
                 throw new KeyNotFoundException();
             }
-            if (aviso.IdAlumno != userAlumno)
+            //if (aviso.IdAlumno != userAlumno)
+            //{
+            //    throw new AccessViolationException();
+            //}
+            if (aviso.FechaLectura == null)
             {
-                throw new AccessViolationException();
+                aviso.FechaLectura = DateTime.Now;
             }
             var avisoDTO = mapper.Map<AvisoPersonalDetallesDTO>(aviso);
-            aviso.FechaLectura = DateTime.Now;
+            avisoDTO.Maestro = aviso.IdMaestroNavigation.Nombre;
             avisoPersonalRepository.Update(aviso);
             return avisoDTO; 
         }
 
         public AvisoPersonalDetallesDTO VerDetallesAvisoPersonalMaestro(int idAviso, int userMaestro)
         {
-            var aviso = avisoPersonalRepository.Query().FirstOrDefault(x => x.Id == idAviso && x.Eliminado == false);
+            var aviso = avisoPersonalRepository.Query().Include(x=>x.IdMaestroNavigation).FirstOrDefault(x => x.Id == idAviso && x.Eliminado == false);
             if (aviso == null)
             {
                 throw new KeyNotFoundException();
             }
-            if (aviso.IdMaestro != userMaestro)
-            {
-                throw new AccessViolationException();
-            }
+            //if (aviso.IdMaestro != userMaestro)
+            //{
+            //    throw new AccessViolationException();
+            //}
             var avisoDTO = mapper.Map<AvisoPersonalDetallesDTO>(aviso);
+            avisoDTO.Maestro = aviso.IdMaestroNavigation.Nombre;
             return avisoDTO;
         }
 
@@ -150,10 +167,10 @@ namespace AvisosAPI.Services
             {
                 throw new KeyNotFoundException();
             }
-            if(alumno.IdClaseNavigation?.IdMaestro != userMaestro)
-            {
-                throw new AccessViolationException();
-            }
+            //if(alumno.IdClaseNavigation?.IdMaestro != userMaestro)
+            //{
+            //    throw new AccessViolationException();
+            //}
             var aviso = mapper.Map<Avisopersonal>(dto);
             aviso.FechaCreacion = DateTime.Now;
             avisoPersonalRepository.Insert(aviso);
@@ -166,10 +183,12 @@ namespace AvisosAPI.Services
             {
                 throw new KeyNotFoundException();
             }
-            if (aviso.IdMaestro != userMaestro)
-            {
-                throw new AccessViolationException();
-            }
+            //if (aviso.IdMaestro != userMaestro)
+            //{
+            //    throw new AccessViolationException();
+            //}
+
+
             //if (DateTime.Now <= aviso.FechaCreacion.AddSeconds(30)) //REVISAR SI ES NECESARIO USAR DATETIME.UTCNOW
             //{
             //    aviso.Eliminado = true;
@@ -191,6 +210,7 @@ namespace AvisosAPI.Services
                 throw new KeyNotFoundException();
             }
             var aviso = mapper.Map<Avisogeneral>(dto);
+            aviso.FechaCreacion = DateTime.Now;
             avisoGeneralRepository.Insert(aviso);
         }
         public void EliminarAvisoGeneral(int idAviso, int idMaestro)
@@ -200,12 +220,69 @@ namespace AvisosAPI.Services
             {
                 throw new KeyNotFoundException();
             }
-            if (aviso.IdMaestro !=  idMaestro)
-            {
-                throw new AccessViolationException();
-            }
+            //if (aviso.IdMaestro !=  idMaestro)
+            //{
+            //    throw new AccessViolationException();
+            //}
             aviso.Eliminado= true;
             avisoGeneralRepository.Update(aviso);
+        }
+
+        public AvisosNuevosAlumnosDTO VerNotificacionesAlumno(int idAlumno, int userAlumno)
+        {
+            var alumno = alumnoRepository.Query().Include(x => x.IdClaseNavigation).Include(x => x.Avisopersonal).FirstOrDefault(x => x.Id == idAlumno && x.Eliminado == false);
+            if (alumno == null)
+            {
+                throw new KeyNotFoundException();
+            }
+            //if (alumno.Id != userAlumno)
+            //{
+            //    throw new AccessViolationException();
+            //}
+            AvisosNuevosAlumnosDTO dto = new AvisosNuevosAlumnosDTO();
+            int cantidadGenerales = 0;
+            int cantidadPersonales = 0;
+            foreach (var aviso in avisoGeneralRepository.GetAll())
+            {
+                if (alumno.UltimaVistaBandeja == null || aviso.FechaCreacion >= alumno.UltimaVistaBandeja)
+                {
+                    cantidadGenerales++;
+                }
+            }
+            foreach (var aviso in alumno.Avisopersonal)
+            {
+                if (aviso.Recibido == false)
+                {
+                    cantidadPersonales++;
+                }
+            }
+            dto.AvisosGeneralesNuevos = cantidadGenerales;
+            dto.AvisosPersonalesNuevos = cantidadPersonales;
+            return dto;
+        }
+
+        public AvisosNuevosMaestroDTO VerNotificacionesMaestro(int idMaestro, int userMaestro)
+        {
+            var maestro = maestroRepository.Query().FirstOrDefault(x => x.Id == idMaestro);
+            if (maestro == null)
+            {
+                throw new KeyNotFoundException();
+            }
+            //if (maestro.Id != userMaestro)
+            //{
+            //    throw new AccessViolationException();
+            //}
+            AvisosNuevosMaestroDTO dto = new AvisosNuevosMaestroDTO();
+            int cantidadGenerales = 0;
+            foreach (var aviso in avisoGeneralRepository.GetAll())
+            {
+                if (maestro.UltimaVistaBandeja == null || aviso.FechaCreacion >= maestro.UltimaVistaBandeja)
+                {
+                    cantidadGenerales++;
+                }
+            }
+            dto.AvisosGeneralesNuevos = cantidadGenerales;
+            return dto;
         }
     }
 }
