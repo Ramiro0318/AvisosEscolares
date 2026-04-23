@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:AvisosMAUI.Views"
+             x:Class="AvisosMAUI.Views.CrearAvisoPage" NavigationPage.HasNavigationBar="False"
+             Title="">
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, 25, *" RowSpacing="8" VerticalOptions="Fill">
+        <HorizontalStackLayout Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55" Spacing="10">
+            <ImageButton Source="arrow.png" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="Start"></ImageButton>
+            <Label Text="Crear aviso" TextColor="White" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
+        </HorizontalStackLayout>
+
+        <Label  Grid.Row="1" Margin="30,0">Destinatario:</Label>
+
+        <!--O uno o el otro-->
+        <!--<Entry  Grid.Row="2" Margin="30,0" Text="Ramiro Ronaldo Rodríguez Valverde" IsReadOnly="False"></Entry>-->
+
+        <Picker x:Name="PickerDestinatarios" Grid.Row="2"  Margin="30,0" TitleColor="Gray" TextColor="Black" BackgroundColor="AliceBlue">
+            <Picker.Items>
+                <x:String>Ramiro Ronaldo Rodríguez Valverde</x:String>
+                <x:String>Carlitos García</x:String>
+                <x:String>Daniel Zapata</x:String>
+                <x:String>Zapata 2</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Label  Grid.Row="3" Margin="30,5, 30, 0">Título:</Label>
+        <Entry  Grid.Row="4" Margin="30,0" Placeholder="Título"></Entry>
+
+
+        <Label  Grid.Row="5" Margin="30,0">Contenido:</Label>
+        <Editor Grid.Row="6" Margin="30,0" HeightRequest="125" Placeholder="Escribe el mensaje aquí..." AutoSize="Disabled" VerticalTextAlignment="Start"/>
+
+        <Label  Grid.Row="7" Margin="30,0" TextColor="Red" IsVisible="True" MaximumWidthRequest="350" HorizontalOptions="Start" VerticalOptions="Center">Mensaje de error</Label>
+
+        <HorizontalStackLayout Grid.Row="8" Spacing="5" Margin="30, 20" VerticalOptions="End" HorizontalOptions="End">
+            <Button Text="Cancelar"></Button>
+            <Button Text="Crear aviso" TextColor="White" Background="#26A69A"></Button>
+        </HorizontalStackLayout>
+        <views:LoadingPage Grid.RowSpan="9" ZIndex="10"></views:LoadingPage>
+    </Grid>
+</ContentPage>

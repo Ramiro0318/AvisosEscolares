@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:AvisosMAUI.Views"
+             x:Class="AvisosMAUI.Views.GrupoPage" NavigationPage.HasNavigationBar="False"
+             Title="">
+    <Grid RowDefinitions="Auto, Auto, *">
+        <Grid Grid.Row="0" BackgroundColor="#26A69A" Padding="15,0" HeightRequest="55" ZIndex="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Entry Grid.Column="0" Text="Grupo de clases" IsReadOnly="True" TextColor="White" FontSize="20" FontAttributes="Bold" Background="Transparent" VerticalOptions="Center"/>
+            <ImageButton Grid.Column="1" Source="edit.png" BackgroundColor="Transparent" HeightRequest="40" WidthRequest="40" Margin="0,0,10,0"/>
+            <ImageButton Grid.Column="2" Source="whitedots.png" BackgroundColor="Transparent" BorderColor="Transparent" HeightRequest="40" WidthRequest="40" Clicked="OnToggleMenuClicked" />
+        </Grid>
+
+        <VerticalStackLayout Grid.Row="1" Margin="5,0">
+            <Label Margin="15,0" FontSize="18">Buscar alumno:</Label>
+            <SearchBar ></SearchBar>
+        </VerticalStackLayout>
+        <Grid Grid.Row="2">
+            <CollectionView x:Name="ListaAlumnos" SelectionMode="Single" Margin="20,5">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems Mode="Reveal">
+                                    <SwipeItem Text="Ver avisos" BackgroundColor="Purple"  />
+                                    <SwipeItem Text="Enviar aviso" BackgroundColor="#26A69A"  />
+                                    <SwipeItem Text="Editar" BackgroundColor="LightGray"  />
+                                    <SwipeItem Text="Eliminar" BackgroundColor="Red" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="RoundRectangle 20">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Nombre}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Matricula}" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Border x:Name="MenuDesplegable" IsVisible="False" BackgroundColor="White" Stroke="LightGray" StrokeShape="RoundRectangle 8" WidthRequest="180" HorizontalOptions="End" VerticalOptions="Start" Margin="0,5,15,0" ZIndex="10" InputTransparent="False">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="5,5" Radius="10" Opacity="0.1" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="0">
+                    <Button Text="Ver registros" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill"/>
+                    <Button Text="Enviar aviso general" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill"/>
+                    <Button Text="Ver avisos generales" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill"/>
+                    <Button Text="Salir" BackgroundColor="Transparent" TextColor="Red" HorizontalOptions="Fill"/>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+        <views:LoadingPage Grid.RowSpan="3" ZIndex="10"></views:LoadingPage>
+    </Grid>
+
+</ContentPage>

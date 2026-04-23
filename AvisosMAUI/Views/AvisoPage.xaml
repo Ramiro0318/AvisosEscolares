@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AvisosMAUI.Views.AvisoPage" 
+             xmlns:views="clr-namespace:AvisosMAUI.Views"
+             NavigationPage.HasNavigationBar="False"
+             Title="" Background="#FFF0F8">
+    <Grid RowDefinitions="Auto, *" RowSpacing="10">
+        <Grid Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55">
+            <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                <ImageButton Source="arrow.png" BackgroundColor="Transparent" BorderColor="Transparent"></ImageButton>
+                <Border Background="Red" Padding="4,0" StrokeShape="4" IsVisible="True" HorizontalOptions="End">
+                    <Border.Triggers>
+                        <DataTrigger TargetType="Border" Binding="{Binding Leido}" Value="false">
+                            <Setter Property="IsVisible" Value="False"></Setter>
+                        </DataTrigger>
+                    </Border.Triggers>
+                    <Label Text="◉" TextColor="White" FontSize="13"></Label>
+                </Border>
+            </FlexLayout>
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="10,0">
+                <Border Background="White" Padding="12" Stroke="Black" StrokeShape="10">
+                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+                        <Label Grid.Row="0" Text="Pasar a entregar documentación" Padding="10,0" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="WordWrap"/>
+                        <Label Grid.Row="1" Text="12 de abril 2024" HorizontalOptions="End" Padding="10, 0, 10, 10"></Label>
+                        <Label Grid.Row="2" Text="Se le solicita a todos los alumnos pasar a entregar su documentación personal de alta, así como su cardex y certificado de la primaria." Padding="10,0" Margin="0, 1, 0, 0"></Label>
+                        <Label Grid.Row="3" FontSize="15" HorizontalOptions="End">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Enviado a las " />
+                                    <Span Text="{Binding HoraCreacion}" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Row="4" FontSize="15" HorizontalOptions="End">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Leído a las " />
+                                    <Span Text="{Binding HoraLeido}" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+        <views:LoadingPage Grid.RowSpan="2" ZIndex="10"></views:LoadingPage>
+    </Grid>
+</ContentPage>

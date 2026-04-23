@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:AvisosMAUI.Views"             
+             x:Class="AvisosMAUI.Views.AvisosPage" NavigationPage.HasNavigationBar="False"
+             Background="#D2DCE4"
+             Title="">
+
+    <Grid RowDefinitions="Auto, *">
+        
+        <Grid Grid.Row="0" ColumnDefinitions="*, *, auto" HeightRequest="50" BackgroundColor="#F0F0F0">
+            <Grid x:Name="BtnPersonales" Grid.Column="0" BackgroundColor="#26A69A" HeightRequest="55">
+
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTabClicked" />
+                </Grid.GestureRecognizers>
+
+                <Grid VerticalOptions="Center" HorizontalOptions="Center" ColumnDefinitions="*, Auto" ColumnSpacing="8" Padding="5">
+                    <Label x:Name="LblPersonales" Grid.Column="0" Text="AVISOS PERSONALES" TextColor="White" FontAttributes="Bold" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+
+                    <Border Grid.Column="1" IsVisible="True" Background="Red" Padding="4,0" StrokeShape="RoundRectangle 5" VerticalOptions="Center">
+                        <Label Text="4" TextColor="White" FontSize="13" HorizontalTextAlignment="Center"/>
+                    </Border>
+
+                </Grid>
+            </Grid>
+
+            <Grid x:Name="BtnGenerales" Grid.Column="1" BackgroundColor="Transparent" HeightRequest="55">
+
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTabClicked" />
+                </Grid.GestureRecognizers>
+
+                <Grid VerticalOptions="Center" HorizontalOptions="Center" ColumnDefinitions="*, Auto" ColumnSpacing="8" Padding="5">
+                    <Label x:Name="LblGenerales" Grid.Column="0" Text="AVISOS GENERALES" TextColor="Gray" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+
+                    <Border Grid.Column="1" IsVisible="True" Background="Red" Padding="4,0" StrokeShape="RoundRectangle 5" VerticalOptions="Center">
+                        <Label Text="4" TextColor="White" FontSize="13" HorizontalTextAlignment="Center"/>
+                    </Border>
+                </Grid>
+            </Grid>
+            <ImageButton Grid.Column="2" Source="dots.png" BackgroundColor="Transparent" BorderColor="Transparent" HeightRequest="55" WidthRequest="22" HorizontalOptions="End" Clicked="OnToggleMenuClicked" />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <ScrollView>
+                <VerticalStackLayout x:Name="ViewPersonales" IsVisible="True" Spacing="8" Padding="20">
+                    <CollectionView SelectionMode="Single">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="9"/>
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border" Binding="{Binding Leido}" Value="True">
+                                            <Setter Property="Background" Value="#B2F0F8FF"></Setter>
+                                        </DataTrigger>
+                                    </Border.Triggers>
+
+                                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label Text=""></Label>
+                                            <Border Background="Red" Padding="4,0" StrokeShape="RoundRectangle 4" IsVisible="False">
+                                                <Border.Triggers>
+                                                    <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="True">
+                                                        <Setter Property="IsVisible" Value="True"></Setter>
+                                                    </DataTrigger>
+                                                </Border.Triggers>
+                                                <Label Text="◉" TextColor="White" FontSize="13"></Label>
+                                            </Border>
+                                        </HorizontalStackLayout>
+                                        <Label Grid.Row="1" LineBreakMode="WordWrap" Text=""></Label>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <!--todos esos son solo para visualizar-->
+                    <!--los ultimos son leidos-->
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End">
+                                <!--<Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Recibido a las " />
+                                        <Span Text="12:AM"/>
+                                    </FormattedString>
+                                </Label.FormattedText>-->
+                            </Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
+                        </Grid>
+                    </Border>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <Border x:Name="MenuDesplegable" IsVisible="False" BackgroundColor="White" Stroke="LightGray" StrokeShape="RoundRectangle 8" WidthRequest="180" HorizontalOptions="End" VerticalOptions="Start" Margin="0,5,15,0" ZIndex="10" InputTransparent="False">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="5,5" Radius="10" Opacity="0.1" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="0">
+                    <Button Text="Salir" BackgroundColor="Transparent" TextColor="Red" HorizontalOptions="Fill"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <ScrollView>
+                <VerticalStackLayout x:Name="ViewGenerales" IsVisible="False" Spacing="8" Padding="20">
+                    <CollectionView SelectionMode="Single">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="9"/>
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
+                                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto">
+                                        <Label Grid.Row="0" Text="{Binding Titulo}" FontAttributes="Bold"></Label>
+                                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Descripcion}" LineBreakMode="WordWrap" ></Label>
+                                        <Label Grid.Row="2" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="- "></Span>
+                                                    <Span Text="{Binding Autor}"></Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
+                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto">
+                            <Label Grid.Row="0" Text="Entrega de tareas" FontAttributes="Bold"></Label>
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                            <Label Grid.Row="2" Text="- Maestro Carlitos"  TextColor="DimGray" FontSize="15" HorizontalOptions="End"></Label>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+        <views:LoadingPage Grid.RowSpan="2" ZIndex="10"></views:LoadingPage>
+    </Grid>
+</ContentPage>
