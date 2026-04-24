@@ -342,7 +342,7 @@ namespace AvisosMAUI.ViewModels
 
         public bool Cargando { get; set; } = false;
         public int idClase { get; set; }
-        public int idMaestro { get; set; } = 2;
+        public int idMaestro { get; set; } = 1;
         public string NombreClase { get; set; } = "";
         public string Errores { get; set; } = "";
         //string busqueda = "";

@@ -23,12 +23,14 @@ builder.Services.AddScoped(typeof(Repository<>), typeof(Repository<>));
 builder.Services.AddScoped<AlumnosService>();
 builder.Services.AddScoped<AvisosService>();
 builder.Services.AddScoped<ClasesService>();
+builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<IValidator<AgregarAlumnoDTO>, AgregarAlumnoValidator>();
 builder.Services.AddScoped<IValidator<AgregarAvisoGeneralDTO>, AgregarAvisoGeneralValidator>();
 builder.Services.AddScoped<IValidator<AgregarAvisoPersonalDTO>, AgregarAvisoPersonalValidator>();
 builder.Services.AddScoped<IValidator<AgregarClaseDTO>, AgregarClaseValidator>();
 builder.Services.AddScoped<IValidator<EditarAlumnoDTO>, EditarAlumnoValidator>();
 builder.Services.AddScoped<IValidator<EditarClaseDTO>, EditarClaseValidator>();
+builder.Services.AddScoped<IValidator<LoginDTO>, LoginValidator>();
 
 builder.Services.AddAutoMapper(x => { }, typeof(Program).Assembly);
 

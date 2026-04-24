@@ -48,6 +48,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Resources\accept.png" />
 		<None Remove="Resources\AppIcon\appicon.svg" />
 		<None Remove="Resources\arrow.png" />
 		<None Remove="Resources\dots.png" />
@@ -71,6 +72,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<MauiImage Include="Resources\accept.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiImage>
 		<MauiImage Include="Resources\arrow.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>

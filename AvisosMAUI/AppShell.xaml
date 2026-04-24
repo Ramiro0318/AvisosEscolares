@@ -8,6 +8,6 @@
     Title="AvisosMAUI">
 
     <ShellContent
-        ContentTemplate="{DataTemplate views:AvisosPage}" />
+        ContentTemplate="{DataTemplate views:GrupoPage}" />
 
 </Shell>
