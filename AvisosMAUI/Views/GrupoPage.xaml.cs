@@ -32,4 +32,12 @@ public partial class GrupoPage : ContentPage
     {
         MenuDesplegable.IsVisible = !MenuDesplegable.IsVisible;
     }
+
+    private void OnFondoTapped(object sender, EventArgs e)
+    {
+        if (MenuDesplegable.IsVisible)
+        {
+            MenuDesplegable.IsVisible = false;
+        }
+    }
 }

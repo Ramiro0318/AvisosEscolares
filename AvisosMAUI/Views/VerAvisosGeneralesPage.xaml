@@ -23,14 +23,26 @@
                             <DataTemplate>
                                 <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
                                     <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
-                                        <Label Grid.Row="0" Text="{Binding Titulo}" FontAttributes="Bold"></Label>
-                                        <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" HorizontalOptions="End" Background="Transparent" BorderColor="Transparent"></ImageButton>
-                                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Descripcion}" LineBreakMode="WordWrap" ></Label>
+
+                                        <Grid ColumnSpacing="5" ColumnDefinitions="*, Auto" Margin="0,0,0,0" Grid.Column="0">
+                                            <Label Grid.Column="0" Text="{Binding Titulo}" LineBreakMode="WordWrap"  FontAttributes="Bold"></Label>
+                                            <Border Background="Red" Grid.Column="1" Padding="4,0,3,3" VerticalOptions="Start" HorizontalOptions="Start" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                                <Border.Triggers>
+                                                    <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="True">
+                                                        <Setter Property="IsVisible" Value="True"></Setter>
+                                                    </DataTrigger>
+                                                </Border.Triggers>
+                                                <Label Text="◉" TextColor="White" FontSize="13"></Label>
+                                            </Border>
+                                        </Grid>
+
+                                        <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" VerticalOptions="Start" HorizontalOptions="End" Background="Transparent" BorderColor="Transparent"></ImageButton>
+                                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Contenido}" Margin="0,5,0,0" LineBreakMode="WordWrap" ></Label>
                                         <Label Grid.Row="2" Grid.ColumnSpan="2" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <Span Text="- "></Span>
-                                                    <Span Text="{Binding Autor}"></Span>
+                                                    <Span Text="{Binding Maestro}"></Span>
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
@@ -41,19 +53,33 @@
                     </CollectionView>
                     <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
                         <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
-                            <Label Grid.Row="0" Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                            <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" HorizontalOptions="End" Background="Transparent" BorderColor="Transparent"></ImageButton>
-                            <Label Grid.Row="1" Grid.ColumnSpan="2" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
+                            
+                            <Grid ColumnSpacing="5" ColumnDefinitions="*, Auto" Margin="0,0,0,0" Grid.Column="0">
+                                <Label Grid.Column="0" Text="Entrega de cerificados ada d sda da sd as a sdas " LineBreakMode="WordWrap"  FontAttributes="Bold"></Label>
+                                <Border Background="Red" Grid.Column="1" Padding="4,0,3,3" VerticalOptions="Start" HorizontalOptions="Start" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="True">
+                                            <Setter Property="IsVisible" Value="True"></Setter>
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                    <Label Text="◉" TextColor="White" FontSize="13"></Label>
+                                </Border>
+                            </Grid>
+                            
+                            <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" VerticalOptions="Start" HorizontalOptions="End" Background="Transparent" BorderColor="Transparent"></ImageButton>
+                            <Label Grid.Row="1" Grid.ColumnSpan="2" Text="Hola soy un texto muy nmuy muy mu largo de escribir para hacer una priubeab adn and; ak " Margin="0,5,0,0" LineBreakMode="WordWrap" ></Label>
                             <Label Grid.Row="2" Grid.ColumnSpan="2" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="- "></Span>
-                                        <Span Text="Maestro Carlitos aak as akdjlak  dasd a"></Span>
+                                        <Span Text="{Binding Maestro}"></Span>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
                         </Grid>
                     </Border>
+                    
+                    
                 </VerticalStackLayout>
             </ScrollView>
         </Grid>

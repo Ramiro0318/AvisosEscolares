@@ -3,12 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              NavigationPage.HasNavigationBar="False"
              x:Class="AvisosMAUI.Views.EliminarView">
-    <VerticalStackLayout Spacing="10">
-        <Label Text="Condirmar eliminación" FontAttributes="Bold" HorizontalOptions="Center"/>
+    <Grid BackgroundColor="#66000000">
+        <Grid.Triggers>
+            <DataTrigger TargetType="Grid" Binding="{Binding Eliminando}" Value="True">
+                <Setter Property="IsVisible" Value="True"></Setter>
+            </DataTrigger>
+        </Grid.Triggers>
 
-        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-            <Button Text="Cancelar" BackgroundColor="LightGray"/>
-            <Button Text="Eliminar" BackgroundColor="Red" TextColor="White"/>
-        </HorizontalStackLayout>
-    </VerticalStackLayout>
+        <Border Background="AliceBlue" Padding="10, 30" StrokeShape="RoundRectangle 8" Margin="24, 0" VerticalOptions="Center" HorizontalOptions="Fill" TranslationY="-20">
+            <VerticalStackLayout Spacing="20" Background="AliceBlue" >
+                <Label Text="Confirmar eliminación" TextColor="Black" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <Button Text="Cancelar" BackgroundColor="LightGray"/>
+                    <Button Text="Eliminar" BackgroundColor="Red" TextColor="White"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
 </ContentView>

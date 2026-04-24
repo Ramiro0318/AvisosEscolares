@@ -15,6 +15,7 @@ public partial class AvisosPage : ContentPage
         {
             BtnPersonales.BackgroundColor = Color.FromArgb("#26A69A");
             ViewPersonales.IsVisible = true;
+            //ViewPersonales.IsEnabled = true;
             LblPersonales.TextColor = Colors.White;
 
             BtnGenerales.BackgroundColor = Colors.Transparent;
@@ -37,5 +38,13 @@ public partial class AvisosPage : ContentPage
     private void OnToggleMenuClicked(object sender, EventArgs e)
     {
         MenuDesplegable.IsVisible = !MenuDesplegable.IsVisible;
+    }
+
+    private void OnFondoTapped(object sender, EventArgs e)
+    {
+        if (MenuDesplegable.IsVisible)
+        {
+            MenuDesplegable.IsVisible = false;
+        }
     }
 }
