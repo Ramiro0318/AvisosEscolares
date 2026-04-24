@@ -3,6 +3,7 @@ using AvisosAPI.Models.Entities;
 using AvisosAPI.Services;
 using AvisosAPI.Validators;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -28,6 +29,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Maestro")]
         public IActionResult AgregarAlumno(AgregarAlumnoDTO dto)
         {
             try
@@ -49,6 +51,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpGet("{idAlumno}")]
+        [Authorize(Roles = "Maestro")]
         public IActionResult VerDetallesAlumno(int idAlumno)
         {
             try
@@ -64,6 +67,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Maestro")]
         public IActionResult EditarAlumno(EditarAlumnoDTO dto)
         {
             try
@@ -84,6 +88,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpDelete("{idAlumno}")]
+        [Authorize(Roles = "Maestro")]
         public IActionResult EliminarAlumno(int idAlumno)
         {
             try

@@ -34,6 +34,7 @@ namespace AvisosAPI.Services
                     new Claim("IdClase", maestro.Clase.FirstOrDefault()?.Id.ToString() ?? "0"),
                     new Claim("NumControl", maestro.NumControl),
                     new Claim("Correo", maestro.Correo ?? ""),
+                    new Claim("Rol", "Maestro")
                 };
                 var token = GenerarJWT(claims);
                 LoginRespuestaDTO res = new LoginRespuestaDTO
@@ -58,6 +59,7 @@ namespace AvisosAPI.Services
                     new Claim("IdClase", alumno.IdClase.ToString() ?? "0"),
                     new Claim("NumControl", alumno.NumControl),
                     new Claim("Correo", alumno.Correo ?? ""),
+                    new Claim("Rol", "Alumno")
                 };
                 var token = GenerarJWT(claims);
                 LoginRespuestaDTO res = new LoginRespuestaDTO

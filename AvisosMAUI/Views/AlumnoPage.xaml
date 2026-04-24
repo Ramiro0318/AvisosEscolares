@@ -7,7 +7,7 @@
     <Grid RowDefinitions="Auto, *">
 
         <HorizontalStackLayout Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55" Spacing="10">
-            <ImageButton Source="arrow.png" HorizontalOptions="Start" BackgroundColor="Transparent" BorderColor="Transparent"></ImageButton>
+            <ImageButton Source="arrow.png" Command="{Binding RegresarCommand}" HorizontalOptions="Start" BackgroundColor="Transparent" BorderColor="Transparent"></ImageButton>
             <Label Text="Historial de avisos" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" TextColor="White"></Label>
         </HorizontalStackLayout>
 
@@ -39,7 +39,7 @@
                                 </Border.GestureRecognizers>
                                 <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
                                     <Label Grid.Row="0" Text="{Binding Titulo}" FontAttributes="Bold"/>
-                                    <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" HorizontalOptions="End" BackgroundColor="Transparent"></ImageButton>
+                                    <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.VerEliminarAvisoPersonalCommand}" CommandParameter="{Binding .}" HorizontalOptions="End" BackgroundColor="Transparent"></ImageButton>
                                     <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Contenido}" Margin="0,0,50,0" LineBreakMode="TailTruncation"/>
                                     <Label Grid.Row="2" Grid.ColumnSpan="2" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="13" HorizontalOptions="End">
                                         <Label.FormattedText>
@@ -57,5 +57,26 @@
             </VerticalStackLayout>
         </ScrollView>
         <views:LoadingPage Grid.RowSpan="2" ZIndex="10"></views:LoadingPage>
+        <Grid BackgroundColor="#66000000" Grid.RowSpan="3" ZIndex="11">
+            <Grid.Triggers>
+                <DataTrigger TargetType="Grid" Binding="{Binding Eliminando}" Value="True">
+                    <Setter Property="IsVisible" Value="True"></Setter>
+                </DataTrigger>
+                <DataTrigger TargetType="Grid" Binding="{Binding Eliminando}" Value="False">
+                    <Setter Property="IsVisible" Value="False"></Setter>
+                </DataTrigger>
+            </Grid.Triggers>
+
+            <Border Background="AliceBlue" Padding="10, 30" StrokeShape="RoundRectangle 8" Margin="24, 0" VerticalOptions="Center" HorizontalOptions="Fill" TranslationY="-20">
+                <VerticalStackLayout Spacing="20" Background="AliceBlue" >
+                    <Label Text="Confirmar eliminación" TextColor="Black" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+                    <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <Button Text="Cancelar" Command="{Binding CancelarEliminarCommand}" BackgroundColor="LightGray"/>
+                        <Button Text="Eliminar" Command="{Binding EliminarAvisoPersonalCommand}" BackgroundColor="Red" TextColor="White"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
     </Grid>
 </ContentPage>

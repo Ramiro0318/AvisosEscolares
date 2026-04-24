@@ -3,11 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:AvisosMAUI.Views"             
              x:Class="AvisosMAUI.Views.AvisosPage" NavigationPage.HasNavigationBar="False"
-             Background="#D2DCE4" x:Name="Pagina"
+             Background="#D2DCE4"
              Title="">
 
-    <Grid RowDefinitions="Auto, *">
-        
+    <Grid RowDefinitions="Auto, *" x:Name="ContenidoGrid">
+
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnFondoTapped" />
+        </Grid.GestureRecognizers>
+
         <Grid Grid.Row="0" ColumnDefinitions="*, *, auto" HeightRequest="50" BackgroundColor="#F0F0F0">
             <Grid x:Name="BtnPersonales" Grid.Column="0" BackgroundColor="#26A69A" HeightRequest="55">
 
@@ -18,9 +22,9 @@
                 <Grid VerticalOptions="Center" HorizontalOptions="Center" ColumnDefinitions="*, Auto" ColumnSpacing="8" Padding="5">
                     <Label x:Name="LblPersonales" Grid.Column="0" Text="AVISOS PERSONALES" TextColor="White" FontAttributes="Bold" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
 
-                    <Border Grid.Column="1" IsVisible="True" Background="Red" Padding="4,0" StrokeShape="RoundRectangle 5" VerticalOptions="Center">
+                    <!--<Border Grid.Column="1" IsVisible="True" Background="Red" Padding="4,0" StrokeShape="RoundRectangle 5" VerticalOptions="Center">
                         <Label Text="4" TextColor="White" FontSize="13" HorizontalTextAlignment="Center"/>
-                    </Border>
+                    </Border>-->
 
                 </Grid>
             </Grid>
@@ -34,65 +38,104 @@
                 <Grid VerticalOptions="Center" HorizontalOptions="Center" ColumnDefinitions="*, Auto" ColumnSpacing="8" Padding="5">
                     <Label x:Name="LblGenerales" Grid.Column="0" Text="AVISOS GENERALES" TextColor="Gray" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
 
-                    <Border Grid.Column="1" IsVisible="True" Background="Red" Padding="4,0" StrokeShape="RoundRectangle 5" VerticalOptions="Center">
+                    <!--<Border Grid.Column="1" IsVisible="True" Background="Red" Padding="4,0" StrokeShape="RoundRectangle 5" VerticalOptions="Center">
                         <Label Text="4" TextColor="White" FontSize="13" HorizontalTextAlignment="Center"/>
-                    </Border>
+                    </Border>-->
                 </Grid>
             </Grid>
             <ImageButton Grid.Column="2" Source="dots.png" BackgroundColor="Transparent" BorderColor="Transparent" HeightRequest="55" WidthRequest="22" HorizontalOptions="End" Clicked="OnToggleMenuClicked" />
         </Grid>
 
         <Grid Grid.Row="1">
-            <VerticalStackLayout x:Name="ViewPersonales" IsVisible="True" Spacing="8" Padding="20">
-                <Border Background="#D2DCE4" Margin="-21, -21, -21, 0">
-                    <VerticalStackLayout Grid.Row="1" Spacing="5" Padding="20, 5, 20, 20" >
-                        <Label>Nombre:</Label>
-                        <Entry Text="Ramiro Ronaldo Rodríguez Valverde" IsReadOnly="True"></Entry>
-                        <Label>Num de control:</Label>
-                        <Entry Text="221G0321" IsReadOnly="True"></Entry>
-                        <Label>Correo:</Label>
-                        <Entry Text="221G0321@rcarbonidera.tecnm.mx" IsReadOnly="True"></Entry>
-                        <BoxView HeightRequest="1" Color="#FF899092" HorizontalOptions="Fill" Margin="-20, 10, -20, -20" ></BoxView>
-                    </VerticalStackLayout>
-                </Border>
-                <CollectionView SelectionMode="Single" ItemsSource="{Binding ListaAvisosPersonalesAlumno}">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="9"/>
-                    </CollectionView.ItemsLayout>
+            <!--Spacing="8" Padding="20"-->
+            <CollectionView x:Name="ViewPersonales" IsVisible="True" SelectionMode="Single" ItemsSource="{Binding ListaAvisosPersonalesAlumno}">
 
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                                <Border.Triggers>
-                                    <DataTrigger TargetType="Border" Binding="{Binding Leido}" Value="True">
-                                        <Setter Property="Background" Value="#B2F0F8FF"></Setter>
-                                    </DataTrigger>
-                                </Border.Triggers>
-                                <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
+                <CollectionView.Header>
+                    <Border Background="#D2DCE4" Padding="20" Margin="0,0,0,10">
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Nombre:" FontAttributes="Bold"/>
+                            <Entry Text="{Binding NombreAlumno}" IsReadOnly="True" BackgroundColor="White"/>
+                            <Label Text="Num de control:" FontAttributes="Bold" Margin="0,10,0,0"/>
+                            <Entry Text="{Binding NumControl}" IsReadOnly="True" BackgroundColor="White"/>
+                            <Label Text="Correo:" FontAttributes="Bold" Margin="0,10,0,0"/>
+                            <Entry Text="{Binding Correo}" IsReadOnly="True" BackgroundColor="White"/>
+                            <BoxView HeightRequest="1" Color="#FF899092" Margin="0,20,0,0" />
+                        </VerticalStackLayout>
+                    </Border>
+                </CollectionView.Header>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="9"/>
+                </CollectionView.ItemsLayout>
 
-                                    <Grid ColumnSpacing="5"  ColumnDefinitions="*, Auto" Margin="0" Grid.Column="0">
-                                        <Label Grid.Column="0" Text="{Binding Titulo}" LineBreakMode="WordWrap"  FontAttributes="Bold"></Label>
-                                        <Border Background="Red" Grid.Column="1" Padding="4,0,3,3" Margin="0,0,25,0" VerticalOptions="Start" HorizontalOptions="Start" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                            <Border.Triggers>
-                                                <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="True">
-                                                    <Setter Property="IsVisible" Value="True"></Setter>
-                                                </DataTrigger>
-                                                <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="False">
-                                                    <Setter Property="IsVisible" Value="False"></Setter>
-                                                </DataTrigger>
-                                            </Border.Triggers>
-                                            <Label Text="◉" TextColor="White" FontSize="13"></Label>
-                                        </Border>
-                                    </Grid>
 
-                                    <Button Grid.Row="0" Grid.Column="1" Text="Ver" ImageSource="see.png" VerticalOptions="Start" HorizontalOptions="End" BackgroundColor="Purple" TextColor="White" Padding="10, 1" />
-                                    <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border" Binding="{Binding Leido}" Value="True">
+                                    <Setter Property="Background" Value="#B2F0F8FF"></Setter>
+                                </DataTrigger>
+                            </Border.Triggers>
+                            <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
+
+                                <Grid ColumnSpacing="5"  ColumnDefinitions="*, Auto" Margin="0" Grid.Column="0">
+                                    <Label Grid.Column="0" Text="{Binding Titulo}" LineBreakMode="WordWrap"  FontAttributes="Bold"></Label>
+                                    <Border Background="Red" Grid.Column="1" Padding="4,0,3,3" Margin="0,0,10,0" VerticalOptions="Start" HorizontalOptions="Start" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                        <Border.Triggers>
+                                            <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="True">
+                                                <Setter Property="IsVisible" Value="True"></Setter>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="False">
+                                                <Setter Property="IsVisible" Value="False"></Setter>
+                                            </DataTrigger>
+                                        </Border.Triggers>
+                                        <Label Text="◉" TextColor="White" FontSize="13"></Label>
+                                    </Border>
                                 </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </VerticalStackLayout>
+
+                                <Button Grid.Row="0" Grid.Column="1" Text="Ver" ImageSource="see.png" Command="{Binding BindingContext.VerDetallesAvisoPersonalAlumnoCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding .}" VerticalOptions="Start" HorizontalOptions="End" BackgroundColor="Purple" TextColor="White" Padding="10, 1" />
+                                <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <CollectionView x:Name="ViewGenerales" IsVisible="False" SelectionMode="Single" VerticalScrollBarVisibility="Always" ItemsSource="{Binding ListaAvisosGenerales}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10" Margin="0,10,0,0">
+                            <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto">
+                                <Label Grid.Row="0" Text="{Binding Titulo}" FontAttributes="Bold"></Label>
+                                <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Contenido}" LineBreakMode="WordWrap" ></Label>
+                                <Label Grid.Row="2" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Vigencia - "></Span>
+                                            <Span Text="{Binding FechaVigencia, StringFormat='{0:dd/MM/yyyy}'}"></Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Border Background="Red" Grid.Column="1" Padding="4,0,3,3" VerticalOptions="Start" HorizontalOptions="End" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="True">
+                                            <Setter Property="IsVisible" Value="True"></Setter>
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="False">
+                                            <Setter Property="IsVisible" Value="False"></Setter>
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                    <Label Text="◉" TextColor="White" FontSize="13"></Label>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
             <Border x:Name="MenuDesplegable" IsVisible="False" BackgroundColor="White" Stroke="LightGray" StrokeShape="RoundRectangle 8" WidthRequest="180" HorizontalOptions="End" VerticalOptions="Start" Margin="0,5,15,0" ZIndex="10" InputTransparent="False">
                 <Border.Shadow>
@@ -100,53 +143,10 @@
                 </Border.Shadow>
 
                 <VerticalStackLayout Spacing="0">
-                    <Button Text="Salir" BackgroundColor="Transparent" TextColor="Red" HorizontalOptions="Fill"/>
+                    <Button Text="Salir" Command="{Binding LogoutCommand}" BackgroundColor="Transparent" TextColor="Red" HorizontalOptions="Fill"/>
                 </VerticalStackLayout>
             </Border>
 
-            <ScrollView>
-                <VerticalStackLayout x:Name="ViewGenerales" IsVisible="False" Spacing="8" Padding="20">
-                    <CollectionView SelectionMode="Single" ItemsSource="{Binding ListaAvisosGenerales}">
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="9"/>
-                        </CollectionView.ItemsLayout>
-
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
-                                    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
-
-                                        <Grid ColumnSpacing="5" ColumnDefinitions="*, Auto" Margin="0,0,5,0" Grid.Column="0">
-                                            <Label Grid.Column="0" Text="{Binding Titulo}" LineBreakMode="WordWrap"  FontAttributes="Bold"></Label>
-                                            <Border Background="Red" Grid.Column="1" Padding="4,0,3,3" VerticalOptions="Start" HorizontalOptions="Start" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                                <Border.Triggers>
-                                                    <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="True">
-                                                        <Setter Property="IsVisible" Value="True"></Setter>
-                                                    </DataTrigger>
-                                                    <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="False">
-                                                        <Setter Property="IsVisible" Value="False"></Setter>
-                                                    </DataTrigger>
-                                                </Border.Triggers>
-                                                <Label Text="◉" TextColor="White" FontSize="13"></Label>
-                                            </Border>
-                                        </Grid>
-
-                                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Contenido}" Margin="0,5,0,0" LineBreakMode="WordWrap" ></Label>
-                                        <Label Grid.Row="2" Grid.ColumnSpan="2" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="Vigencia - "></Span>
-                                                    <Span Text="{Binding FechaVigencia, StringFormat='{0:dd/MM/yyyy}'}"></Span>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </VerticalStackLayout>
-            </ScrollView>
         </Grid>
         <views:LoadingPage Grid.RowSpan="2" ZIndex="10"></views:LoadingPage>
     </Grid>

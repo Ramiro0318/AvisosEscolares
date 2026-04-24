@@ -3,6 +3,7 @@ using AvisosAPI.Models.Entities;
 using AvisosAPI.Repositories;
 using AvisosAPI.Services;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -25,6 +26,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpGet("{idMaestro}")]
+        [Authorize(Roles = "Maestro")]
         public IActionResult VerClase(int idMaestro)
         {
             try
@@ -40,6 +42,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Maestro")]
         public IActionResult AgregarClase(AgregarClaseDTO dto)
         {
             try
@@ -60,6 +63,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Maestro")]
         public IActionResult EditarClase(EditarClaseDTO dto)
         {
             try

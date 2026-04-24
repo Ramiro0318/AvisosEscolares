@@ -19,6 +19,41 @@ namespace AvisosMAUI.Services
             };
         }
 
+        public async Task<(LoginRespuestaDTO? res, List<string>? errores)> Login(LoginDTO dto)
+        {
+            try
+            {
+                var resultado = await cliente.PostAsJsonAsync("api/auth", dto);
+                if (resultado.IsSuccessStatusCode)
+                {
+                    var res = await resultado.Content.ReadFromJsonAsync<LoginRespuestaDTO>();
+                    if (res != null)
+                    {
+                        await SecureStorage.SetAsync("token", res.Token);
+                        cliente.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", res.Token);
+                    }
+
+                    return (res, null);
+                }
+                else
+                {
+                    var errores = await resultado.Content.ReadFromJsonAsync<List<string>>();
+                    return (null, errores);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (null, new List<string> { ex.Message });
+            }
+        }
+
+        public void Logout()
+        {
+            SecureStorage.Remove("token");
+
+            cliente.DefaultRequestHeaders.Authorization = null;
+        }
+
         public async Task<(bool res, List<string>? errores)> AgregarAlumno(AgregarAlumnoDTO dto)
         {
             try
@@ -61,7 +96,7 @@ namespace AvisosMAUI.Services
             }
         }
 
-        public async Task<(bool, string?)> EliminarAlumno(int idAlumno)
+        public async Task<(bool res, string? error)> EliminarAlumno(int idAlumno)
         {
             try
             {
@@ -297,7 +332,7 @@ namespace AvisosMAUI.Services
             }
         }
 
-        public async Task<(bool, string?)> EliminarAvisoGeneral(int idAviso)
+        public async Task<(bool res, string? error)> EliminarAvisoGeneral(int idAviso)
         {
             try
             {
@@ -339,7 +374,7 @@ namespace AvisosMAUI.Services
             }
         }
 
-        public async Task<(bool, string?)> EliminarAvisoPersonal(int idAviso)
+        public async Task<(bool res, string? error)> EliminarAvisoPersonal(int idAviso)
         {
             try
             {

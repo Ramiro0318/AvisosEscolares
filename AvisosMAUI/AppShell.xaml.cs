@@ -17,6 +17,7 @@ namespace AvisosMAUI
             Routing.RegisterRoute("AgregarAvisoGeneralPage", typeof(CrearAvisoGeneralPage));
             Routing.RegisterRoute("AvisosAlumnoPage", typeof(AvisosPage));
             Routing.RegisterRoute("AvisoDetallesPage", typeof(AvisoPage));
+            Routing.RegisterRoute("LoginPage", typeof(MainPage));
         }
     }
 }

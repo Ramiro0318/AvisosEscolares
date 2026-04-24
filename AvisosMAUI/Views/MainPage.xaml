@@ -1,22 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:AvisosMAUI.Views"
              x:Class="AvisosMAUI.Views.MainPage" Title="" Background="#D2DCE4">
     <ScrollView>
         <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, 25, Auto, Auto" RowSpacing="8" VerticalOptions="Fill">
 
-                <Border Grid.Row="0" Padding="10, 16" BackgroundColor="#26A69A" VerticalOptions="Start" HorizontalOptions="Fill">
-                    <Label FontSize="35" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center">Inicia sesión</Label>
-                </Border>
-                <Label Grid.Row="1" Margin="30,0">Clave:</Label>
-                <Entry Grid.Row="2" Margin="30,0" Placeholder="Clave"></Entry>
-                <Label Grid.Row="3" Margin="30,0">Contraseña:</Label>
-                <Entry Grid.Row="4" Margin="30,0" Placeholder="Contraseña" IsPassword="True"></Entry>
-                <Label Grid.Row="5" TextColor="Red" IsVisible="False" MaximumWidthRequest="350" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center">Mensaje de error</Label>
-                <Button Grid.Row="6" Text="Ingresar" FontSize="20" HorizontalOptions="Center" WidthRequest="200" Margin="0, 0, 0, 5"></Button>
-                <Label Grid.Row="7" HorizontalTextAlignment="Center"> ¿No tienes cuenta?</Label>
-                <Button Grid.Row="8" Text="Registrarse" FontSize="15" HorizontalOptions="Center" WidthRequest="130" Margin="10, 30" Padding="0" Opacity="0.9" BorderColor="Transparent"  />
-            </Grid>
+            <Border Grid.Row="0" Padding="10, 16" BackgroundColor="#26A69A" VerticalOptions="Start" HorizontalOptions="Fill">
+                <Label FontSize="35" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center">Inicia sesión</Label>
+            </Border>
+            <Label Grid.Row="1" Margin="30,0">Número de control:</Label>
+            <Entry Grid.Row="2" Margin="30,0" Placeholder="221G01" Text="{Binding LoginModel.NumControl}"></Entry>
+            <Label Grid.Row="3" Margin="30,0">Contraseña:</Label>
+            <Entry Grid.Row="4" Margin="30,0" Placeholder="Contraseña" IsPassword="True" Text="{Binding LoginModel.Contraseña}"></Entry>
+            <Label Grid.Row="5" TextColor="Red" IsVisible="False" MaximumWidthRequest="350" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center">Mensaje de error</Label>
+            <Label  Grid.Row="12" Margin="30,0" TextColor="Red" IsVisible="True" MaximumWidthRequest="350" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Errores}"></Label>
+            <Button Grid.Row="6" Text="Ingresar" FontSize="20" Command="{Binding LoginCommand}" HorizontalOptions="Center" WidthRequest="200" Margin="0, 0, 0, 5"></Button>
+            <!--<views:LoadingPage Grid.RowSpan="8" Grid.Row="0" ZIndex="10"></views:LoadingPage>-->
+        </Grid>
     </ScrollView>
 
 </ContentPage>

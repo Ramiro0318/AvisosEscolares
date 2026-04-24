@@ -15,8 +15,8 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Entry Grid.Column="0" Text="Grupo de clases" IsReadOnly="True" TextColor="White" FontSize="20" FontAttributes="Bold" Background="Transparent" VerticalOptions="Center"/>
-            <ImageButton Grid.Column="1" Source="edit.png" BackgroundColor="Transparent" HeightRequest="40" WidthRequest="40" Margin="0,0,10,0"/>
+            <Label Grid.Column="0" Text="Clase" TextColor="White" FontSize="20" FontAttributes="Bold" Background="Transparent" VerticalOptions="Center"/>
+            <!--<ImageButton Grid.Column="1" Source="edit.png" BackgroundColor="Transparent" HeightRequest="40" WidthRequest="40" Margin="0,0,10,0"/>-->
             <ImageButton Grid.Column="2" Source="whitedots.png" BackgroundColor="Transparent" BorderColor="Transparent" HeightRequest="40" WidthRequest="40" Clicked="OnToggleMenuClicked" />
         </Grid>
 
@@ -77,7 +77,7 @@
                             <TapGestureRecognizer Tapped="OnFondoTapped" />
                         </Button.GestureRecognizers>
                     </Button>
-                    <Button Text="Salir" BackgroundColor="Transparent" TextColor="Red" HorizontalOptions="Fill">
+                    <Button Text="Salir" BackgroundColor="Transparent" Command="{Binding LogoutCommand}" TextColor="Red" HorizontalOptions="Fill">
                         <Button.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnFondoTapped" />
                         </Button.GestureRecognizers>
@@ -86,8 +86,8 @@
             </Border>
         </Grid>
         <views:LoadingPage Grid.RowSpan="3" ZIndex="10"></views:LoadingPage>
-        
-        <Grid BackgroundColor="#66000000" ZIndex="11" Grid.RowSpan="3">
+
+        <Grid BackgroundColor="#66000000" Grid.RowSpan="3" ZIndex="11">
             <Grid.Triggers>
                 <DataTrigger TargetType="Grid" Binding="{Binding Eliminando}" Value="True">
                     <Setter Property="IsVisible" Value="True"></Setter>
@@ -97,14 +97,16 @@
                 </DataTrigger>
             </Grid.Triggers>
 
-            <VerticalStackLayout Spacing="20" Background="AliceBlue" Padding="10, 30" VerticalOptions="Center" HorizontalOptions="Fill" TranslationY="-20">
-                <Label Text="Confirmar eliminación" TextColor="Black" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Border Background="AliceBlue" Padding="10, 30" StrokeShape="RoundRectangle 8" Margin="24, 0" VerticalOptions="Center" HorizontalOptions="Fill" TranslationY="-20">
+                <VerticalStackLayout Spacing="20" Background="AliceBlue" >
+                    <Label Text="Confirmar eliminación" TextColor="Black" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center"/>
 
-                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                    <Button Text="Cancelar" BackgroundColor="LightGray"/>
-                    <Button Text="Eliminar" BackgroundColor="Red" TextColor="White"/>
-                </HorizontalStackLayout>
-            </VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <Button Text="Cancelar" Command="{Binding CancelarEliminarCommand}" BackgroundColor="LightGray"/>
+                        <Button Text="Eliminar" Command="{Binding EliminarAlumnoCommand}" BackgroundColor="Red" TextColor="White"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
         </Grid>
     </Grid>
 

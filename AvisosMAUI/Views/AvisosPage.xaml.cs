@@ -9,6 +9,13 @@ public partial class AvisosPage : ContentPage
 		InitializeComponent();
         this.BindingContext = vm;
 	}
+    private void OnFondoTapped(object sender, EventArgs e)
+    {
+        if (MenuDesplegable.IsVisible)
+        {
+            MenuDesplegable.IsVisible = false;
+        }
+    }
 
     private void OnTabClicked(object sender, EventArgs e)
     {

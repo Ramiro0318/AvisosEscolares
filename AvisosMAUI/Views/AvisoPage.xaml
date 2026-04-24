@@ -8,15 +8,7 @@
     <Grid RowDefinitions="Auto, *" RowSpacing="10">
         <Grid Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55">
             <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
-                <ImageButton Source="arrow.png" BackgroundColor="Transparent" BorderColor="Transparent"></ImageButton>
-                <Border Background="Red" Padding="4,0" StrokeShape="4" IsVisible="True" HorizontalOptions="End">
-                    <Border.Triggers>
-                        <DataTrigger TargetType="Border" Binding="{Binding Leido}" Value="false">
-                            <Setter Property="IsVisible" Value="False"></Setter>
-                        </DataTrigger>
-                    </Border.Triggers>
-                    <Label Text="◉" TextColor="White" FontSize="13"></Label>
-                </Border>
+                <ImageButton Source="arrow.png" Command="{Binding RegresarCommand}" BackgroundColor="Transparent" BorderColor="Transparent"></ImageButton>
             </FlexLayout>
         </Grid>
 
@@ -25,21 +17,20 @@
                 <Border Background="White" Padding="12" Stroke="Black" StrokeShape="10">
                     <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
                         <Label Grid.Row="0" Text="{Binding AvisoPersonalDetallesModel.Titulo}" Padding="10,0" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="WordWrap"/>
-                        <Label Grid.Row="1" Text="{Binding AvisoPersonalDetallesModel.FechaCreacion}" HorizontalOptions="End" Padding="10, 0, 10, 10"></Label>
                         <Label Grid.Row="2" Text="{Binding AvisoPersonalDetallesModel.Contenido}" Padding="10,0" Margin="0, 1, 0, 0"></Label>
-                        <Label Grid.Row="3" FontSize="15" HorizontalOptions="End">
+                        <Label Grid.Row="3" FontSize="15" HorizontalOptions="End" Margin="0,20,0,0">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="Enviado a las " />
-                                    <Span Text="{Binding AvisoPersonalDetallesModel.FechaCreacion}" FontAttributes="Bold" />
+                                    <Span Text="Fecha enviado: " TextColor="Gray"  />
+                                    <Span Text="{Binding AvisoPersonalDetallesModel.FechaCreacion, StringFormat='{0:dd/MM/yyyy hh:mm tt}'}" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
                         <Label Grid.Row="4" FontSize="15" HorizontalOptions="End">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="Leído a las " />
-                                    <Span Text="{Binding AvisoPersonalDetallesModel.FechaLectura}" FontAttributes="Bold" />
+                                    <Span Text="Fecha lectura: "  TextColor="Gray" />
+                                    <Span Text="{Binding AvisoPersonalDetallesModel.FechaLectura, StringFormat='{0:dd/MM/yyyy hh:mm tt}' }"  />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>

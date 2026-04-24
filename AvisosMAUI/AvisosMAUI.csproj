@@ -53,6 +53,7 @@
 		<None Remove="Resources\arrow.png" />
 		<None Remove="Resources\dots.png" />
 		<None Remove="Resources\edit.png" />
+		<None Remove="Resources\see.png" />
 		<None Remove="Resources\Splash\logo_app.png" />
 		<None Remove="Resources\Splash\logo_app_128.svg" />
 		<None Remove="Resources\trash.png" />
@@ -86,6 +87,9 @@
 	<ItemGroup>
 		<MauiImage Include="Resources\dots.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Include="Resources\see.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
 		<MauiImage Include="Resources\trash.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

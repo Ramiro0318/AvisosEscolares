@@ -36,6 +36,159 @@ namespace AvisosMAUI.ViewModels
             VerAvisosGeneralesAlumnoCommand = new Command(VerAvisosGeneralesAlumno);
             VerDetallesAvisoPersonalMaestroCommand = new Command<AvisoPersonalMaestroDTO>(VerDetallesAvisoPersonalMaestro);
             VerDetallesAvisoPersonalAlumnoCommand = new Command<AvisoPersonalAlumnoDTO>(VerDetallesAvisoPersonalAlumno);
+            EliminarAvisoPersonalCommand = new Command(EliminarAvisoPersonal);
+            EliminarAvisoGeneralCommand = new Command(EliminarAvisoGeneral);
+            VerEliminarAvisoGeneralCommand = new Command<AvisoGeneralDTO>(VerEliminarAvisoGeneral);
+            VerEliminarAvisoPersonalCommand = new Command<AvisoPersonalMaestroDTO>(VerEliminarAvisoPersonal);
+            RegresarCommand = new Command(Regresar);
+            CancelarEliminarCommand = new Command(CancelarEliminar);
+            LoginCommand = new Command(Login);
+            LogoutCommand = new Command(Logout);
+        }
+
+        private async void Logout()
+        {
+            service.Logout();
+            LoginModel = new();
+            PropertyChanged?.Invoke(this, new(nameof(LoginModel)));
+            await Shell.Current.GoToAsync("LoginPage");
+        }
+
+        private async void Login()
+        {
+            Errores = "";
+            PropertyChanged?.Invoke(this, new(nameof(Errores)));
+            if (LoginModel != null)
+            {
+                Cargando = true;
+                PropertyChanged?.Invoke(this, new(nameof(Cargando)));
+                var res = await service.Login(LoginModel);
+                if (res.res != null)
+                {
+                    if (res.res.Rol == "Maestro")
+                    {
+                        idMaestro = res.res.Id;
+                        idClase = res.res.IdClase;
+                        NumControl = res.res.NumControl;
+                        Correo = res.res.Correo ?? "";
+                        await Shell.Current.GoToAsync("GrupoPage");
+                        CargarClase();
+                    } 
+                    if (res.res.Rol == "Alumno")
+                    {
+                        idAlumno = res.res.Id;
+                        NombreAlumno = res.res.Nombre;
+                        NumControl = res.res.NumControl;
+                        Correo = res.res.Correo ?? "";
+                        await Shell.Current.GoToAsync("AvisosAlumnoPage");
+                        VerAvisosPersonalesAlumno();
+                    }
+                }
+                else
+                {
+                    Errores = string.Join(Environment.NewLine, res.errores ?? Enumerable.Empty<string>());
+                    PropertyChanged?.Invoke(this, new(nameof(Errores)));
+                }
+
+                Cargando = false;
+                PropertyChanged?.Invoke(this, new(nameof(Cargando)));
+            }
+        }
+
+        private void CancelarEliminar()
+        {
+            Eliminando = false;
+            idEliminar = 0;
+            NombreEliminacion = "";
+            PropertyChanged?.Invoke(this, new(nameof(Eliminando)));
+            PropertyChanged?.Invoke(this, new(nameof(NombreEliminacion)));
+        }
+
+        private void VerEliminarAvisoPersonal(AvisoPersonalMaestroDTO dTO)
+        {
+            Eliminando = true;
+            idEliminar = dTO.Id;
+            NombreEliminacion = dTO.Titulo;
+            PropertyChanged?.Invoke(this, new(nameof(Eliminando)));
+            PropertyChanged?.Invoke(this, new(nameof(NombreEliminacion)));
+        }
+
+        private void VerEliminarAvisoGeneral(AvisoGeneralDTO dTO)
+        {
+            Eliminando = true;
+            idEliminar = dTO.Id;
+            NombreEliminacion = dTO.Titulo;
+            PropertyChanged?.Invoke(this, new(nameof(Eliminando)));
+            PropertyChanged?.Invoke(this, new(nameof(NombreEliminacion)));
+        }
+
+        private async void EliminarAvisoGeneral()
+        {
+            Cargando = true;
+            PropertyChanged?.Invoke(this, new(nameof(Cargando)));
+            var res = await service.EliminarAvisoGeneral(idEliminar);
+            if (res.res)
+            {
+                var res2 = await service.VerAvisosGeneralesMaestro(idMaestro);
+                if (res2.avisos != null)
+                {
+                    ListaAvisosGenerales.Clear();
+                    foreach (var aviso in res2.avisos.OrderByDescending(x => x.FechaCreacion))
+                    {
+                        ListaAvisosGenerales.Add(aviso);
+                    }
+                }
+                else
+                {
+                    Errores = res.error ?? "";
+                    PropertyChanged?.Invoke(this, new(nameof(Errores)));
+                }
+            }
+            else
+            {
+                Errores = res.error ?? "";
+                PropertyChanged?.Invoke(this, new(nameof(Errores)));
+            }
+            Cargando = false;
+            PropertyChanged?.Invoke(this, new(nameof(Cargando)));
+            CancelarEliminar();
+            //await Shell.Current.GoToAsync("AvisosGeneralesMaestroPage");
+        }
+
+        private async void EliminarAvisoPersonal()
+        {
+            Cargando = true;
+            PropertyChanged?.Invoke(this, new(nameof(Cargando)));
+            var res = await service.EliminarAvisoPersonal(idEliminar);
+            if (res.res)
+            {
+                var res2 = await service.VerDetallesAlumno(AlumnoDetallesModel.Id);
+                if (res2.alumno != null)
+                {
+                    AlumnoDetallesModel = res2.alumno;
+                    AlumnoDetallesModel.ListaAvisosAlumno = AlumnoDetallesModel.ListaAvisosAlumno.OrderByDescending(x => x.FechaCreacion).ToList();
+                    PropertyChanged?.Invoke(this, new(nameof(AlumnoDetallesModel)));
+                }
+                else
+                {
+                    Errores = res.error ?? "";
+                    PropertyChanged?.Invoke(this, new(nameof(Errores)));
+                }
+            }
+            else
+            {
+                Errores = res.error ?? "";
+                PropertyChanged?.Invoke(this, new(nameof(Errores)));
+            }
+            Cargando = false;
+            PropertyChanged?.Invoke(this, new(nameof(Cargando)));
+            CancelarEliminar();
+            //await Shell.Current.GoToAsync("AvisosGeneralesMaestroPage");
+        }
+
+        private async void Regresar()
+        {
+            await Shell.Current.GoToAsync("..");
         }
 
         private async void VerDetallesAvisoPersonalAlumno(AvisoPersonalAlumnoDTO dto)
@@ -181,9 +334,24 @@ namespace AvisosMAUI.ViewModels
             await Shell.Current.GoToAsync("AvisosGeneralesMaestroPage");
         }
 
-        private void EliminarAlumno()
+        private async void EliminarAlumno()
         {
-            throw new NotImplementedException();
+            Cargando = true;
+            PropertyChanged?.Invoke(this, new(nameof(Cargando)));
+            var res = await service.EliminarAlumno(idEliminar);
+            if (res.res)
+            {
+                CargarClase();
+            }
+            else
+            {
+                Errores = res.error ?? "";
+                PropertyChanged?.Invoke(this, new(nameof(Errores)));
+            }
+            Cargando = false;
+            PropertyChanged?.Invoke(this, new(nameof(Cargando)));
+            CancelarEliminar();
+            //await Shell.Current.GoToAsync("AvisosGeneralesMaestroPage");
         }
 
         private async void VerEliminarAlumno(AlumnoListaDTO dTO)
@@ -342,7 +510,7 @@ namespace AvisosMAUI.ViewModels
 
         public bool Cargando { get; set; } = false;
         public int idClase { get; set; }
-        public int idMaestro { get; set; } = 1;
+        public int idMaestro { get; set; }
         public string NombreClase { get; set; } = "";
         public string Errores { get; set; } = "";
         //string busqueda = "";
@@ -367,6 +535,16 @@ namespace AvisosMAUI.ViewModels
         public ObservableCollection<AvisoGeneralDTO> ListaAvisosGenerales { get; set; } = new();
         public bool Eliminando { get; set; }
         public AvisoPersonalDetallesDTO AvisoPersonalDetallesModel { get; set; } = new();
+        public ICommand RegresarCommand { get; set; }
+        //public ICommand VerEliminarCommand { get; set; }
+        public ICommand CancelarEliminarCommand { get; set; }
+
+        //LOGIN COMANDOS
+        public ICommand LoginCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
+
+        //LOGIN PROPIEDADES
+        public LoginDTO LoginModel { get; set; } = new();
 
 
         //COMANDOS MAESTRO
@@ -385,6 +563,10 @@ namespace AvisosMAUI.ViewModels
         public ICommand VerCrearAvisoGeneralCommand { get; set; }
         public ICommand CrearAvisoGeneralCommand { get; set; }
         public ICommand VerDetallesAvisoPersonalMaestroCommand { get; set; }
+        public ICommand VerEliminarAvisoPersonalCommand { get; set;}
+        public ICommand VerEliminarAvisoGeneralCommand { get; set; }
+        public ICommand EliminarAvisoGeneralCommand { get; set; }
+        public ICommand EliminarAvisoPersonalCommand { get; set; }
 
 
         //PROPIEDADES MAESTRO
@@ -407,8 +589,11 @@ namespace AvisosMAUI.ViewModels
 
 
         // PROPIEDADES ALUMNO
-        private int idAlumno = 1;
+        private int idAlumno;
         public ObservableCollection<AvisoPersonalAlumnoDTO> ListaAvisosPersonalesAlumno { get; set; } = new();
+        public string NombreAlumno { get; set; } = "";
+        public string NumControl { get; set; } = "";
+        public string Correo { get; set; } = "";
 
         private void FiltrarAlumnos()
         {

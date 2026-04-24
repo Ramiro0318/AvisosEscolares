@@ -3,6 +3,7 @@ using AvisosAPI.Models.Entities;
 using AvisosAPI.Repositories;
 using AvisosAPI.Services;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -24,6 +25,7 @@ namespace AvisosAPI.Controllers
             this.agregarGeneralValidator = agregarGeneralValidator;
         }
         [HttpGet("alumnos/{idAlumno}")]
+        [Authorize(Roles = "Alumno")]
         public IActionResult VerAvisosPersonalesAlumno(int idAlumno)
         {
             try
@@ -38,6 +40,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpGet("{idAviso}/alumno")]
+        [Authorize(Roles = "Alumno")]
         public IActionResult VerDetallesAvisoAlumno(int idAviso)
         {
             try
@@ -53,6 +56,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpGet("{idAviso}/maestro")]
+        [Authorize(Roles = "Maestro")]
         public IActionResult VerDetallesAvisoMaestro(int idAviso)
         {
             try
@@ -68,6 +72,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpGet("generales/alumno/{idAlumno}")]
+        [Authorize(Roles = "Alumno")]
         public IActionResult VerAvisosGeneralesAlumno(int idAlumno)
         {
             try
@@ -83,6 +88,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpGet("generales/maestro/{idMaestro}")]
+        [Authorize(Roles = "Maestro")]
         public IActionResult VerAvisosGeneralesMaestro(int idMaestro)
         {
             try
@@ -97,7 +103,8 @@ namespace AvisosAPI.Controllers
             }
         }
 
-        [HttpPost("generales")] 
+        [HttpPost("generales")]
+        [Authorize(Roles = "Maestro")]
         public IActionResult AgregarAvisoGeneral(AgregarAvisoGeneralDTO dto)
         {
             try
@@ -118,6 +125,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpDelete("generales/{idAviso}")]
+        [Authorize(Roles = "Maestro")]
         public IActionResult EliminarAvisoGeneral(int idAviso)
         {
             try
@@ -134,6 +142,7 @@ namespace AvisosAPI.Controllers
 
 
         [HttpPost("alumno")]
+        [Authorize(Roles = "Maestro")]
         public IActionResult AgregarAvisoPersonal(AgregarAvisoPersonalDTO dto)
         {
             try
@@ -154,6 +163,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpDelete("{idAviso}")]
+        [Authorize(Roles = "Maestro")]
         public IActionResult EliminarAvisoPersonal(int idAviso)
         {
             try
@@ -169,6 +179,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpGet("notificaciones/alumno/{idAlumno}")]
+        [Authorize(Roles = "Alumno")]
         public IActionResult RecibirNotificacionesAlumno(int idAlumno)
         {
             try
@@ -184,6 +195,7 @@ namespace AvisosAPI.Controllers
         }
 
         [HttpGet("notificaciones/maestro/{idMaestro}")]
+        [Authorize(Roles = "Maestro")]
         public IActionResult RecibirNotificacionesMaestro(int idMaestro)
         {
             try

@@ -6,7 +6,7 @@
              Title="">
     <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, *" RowSpacing="8" VerticalOptions="Fill">
         <HorizontalStackLayout Grid.Row="0" BackgroundColor="#26A69A" Padding="10,0" HeightRequest="55" Spacing="10">
-            <ImageButton Source="arrow.png" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="Start"></ImageButton>
+            <ImageButton Source="arrow.png" Command="{Binding RegresarCommand}" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="Start"></ImageButton>
             <Label Text="Crear aviso" TextColor="White" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
         </HorizontalStackLayout>
 
@@ -27,7 +27,7 @@
         <Label  Grid.Row="7" Margin="30,0" TextColor="Red" Text="{Binding Errores}" IsVisible="True" MaximumWidthRequest="350" HorizontalOptions="Start" VerticalOptions="Center"></Label>
 
         <HorizontalStackLayout Grid.Row="8" Spacing="5" Margin="30, 20" VerticalOptions="End" HorizontalOptions="End">
-            <Button Text="Cancelar"></Button>
+            <Button Text="Cancelar" Command="{Binding RegresarCommand}"></Button>
             <Button Text="Crear aviso" Command="{Binding CrearAvisoPersonalCommand}" TextColor="White" Background="#26A69A"></Button>
         </HorizontalStackLayout>
         <views:LoadingPage Grid.RowSpan="9" ZIndex="10"></views:LoadingPage>

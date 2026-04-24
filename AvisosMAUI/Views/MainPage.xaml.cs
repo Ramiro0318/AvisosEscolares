@@ -1,11 +1,14 @@
-﻿namespace AvisosMAUI.Views;
+﻿using AvisosMAUI.ViewModels;
+
+namespace AvisosMAUI.Views;
 
 public partial class MainPage : ContentPage
 {
 
-    public MainPage()
+    public MainPage(AvisosViewModel vm)
     {
         InitializeComponent();
+        this.BindingContext = vm;
     }
 
 }
