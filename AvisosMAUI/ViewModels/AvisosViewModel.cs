@@ -40,10 +40,20 @@ namespace AvisosMAUI.ViewModels
             EliminarAvisoGeneralCommand = new Command(EliminarAvisoGeneral);
             VerEliminarAvisoGeneralCommand = new Command<AvisoGeneralDTO>(VerEliminarAvisoGeneral);
             VerEliminarAvisoPersonalCommand = new Command<AvisoPersonalMaestroDTO>(VerEliminarAvisoPersonal);
+            VolverDetallesAvisoCommand = new Command(VolverDetallesAviso);
             RegresarCommand = new Command(Regresar);
             CancelarEliminarCommand = new Command(CancelarEliminar);
             LoginCommand = new Command(Login);
             LogoutCommand = new Command(Logout);
+        }
+
+        private void VolverDetallesAviso()
+        {
+            Regresar();
+            if (rol == "Alumno")
+            {
+                VerAvisosPersonalesAlumno();
+            }
         }
 
         private async void Logout()
@@ -70,6 +80,7 @@ namespace AvisosMAUI.ViewModels
                         idMaestro = res.res.Id;
                         idClase = res.res.IdClase;
                         NumControl = res.res.NumControl;
+                        rol = res.res.Rol;
                         Correo = res.res.Correo ?? "";
                         await Shell.Current.GoToAsync("GrupoPage");
                         CargarClase();
@@ -79,6 +90,7 @@ namespace AvisosMAUI.ViewModels
                         idAlumno = res.res.Id;
                         NombreAlumno = res.res.Nombre;
                         NumControl = res.res.NumControl;
+                        rol = res.res.Rol;
                         Correo = res.res.Correo ?? "";
                         await Shell.Current.GoToAsync("AvisosAlumnoPage");
                         VerAvisosPersonalesAlumno();
@@ -511,6 +523,7 @@ namespace AvisosMAUI.ViewModels
         public bool Cargando { get; set; } = false;
         public int idClase { get; set; }
         public int idMaestro { get; set; }
+        private string rol = "";
         public string NombreClase { get; set; } = "";
         public string Errores { get; set; } = "";
         //string busqueda = "";
@@ -586,6 +599,7 @@ namespace AvisosMAUI.ViewModels
         public ICommand VerAvisosPersonalesAlumnoCommand { get; set; }
         public ICommand VerAvisosGeneralesAlumnoCommand { get; set; }
         public ICommand VerDetallesAvisoPersonalAlumnoCommand { get; set; }
+        public ICommand VolverDetallesAvisoCommand { get; set; }
 
 
         // PROPIEDADES ALUMNO

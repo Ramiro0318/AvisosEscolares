@@ -37,7 +37,11 @@ namespace AvisosAPI.Controllers
             }
             catch (KeyNotFoundException)
             {
-                return Unauthorized();
+                return Unauthorized(new List<string> { "Usuario o contraseña incorrectos" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new List<string> { ex.Message });
             }
         }
     }

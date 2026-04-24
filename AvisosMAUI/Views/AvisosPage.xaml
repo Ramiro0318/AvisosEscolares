@@ -75,6 +75,9 @@
                                 <DataTrigger TargetType="Border" Binding="{Binding Leido}" Value="True">
                                     <Setter Property="Background" Value="#B2F0F8FF"></Setter>
                                 </DataTrigger>
+                                <DataTrigger TargetType="Border" Binding="{Binding Leido}" Value="False">
+                                    <Setter Property="Background" Value="AliceBlue"></Setter>
+                                </DataTrigger>
                             </Border.Triggers>
                             <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
 
