@@ -1,9 +1,12 @@
+using AvisosMAUI.ViewModels;
+
 namespace AvisosMAUI.Views;
 
 public partial class CrearAvisoGeneralPage : ContentPage
 {
-	public CrearAvisoGeneralPage()
+	public CrearAvisoGeneralPage(AvisosViewModel vm)
 	{
 		InitializeComponent();
+		this.BindingContext = vm;
 	}
 }

@@ -1,10 +1,13 @@
+using AvisosMAUI.ViewModels;
+
 namespace AvisosMAUI.Views;
 
 public partial class AvisosPage : ContentPage
 {
-	public AvisosPage()
+	public AvisosPage(AvisosViewModel vm)
 	{
 		InitializeComponent();
+        this.BindingContext = vm;
 	}
 
     private void OnTabClicked(object sender, EventArgs e)

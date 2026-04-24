@@ -4,7 +4,10 @@
              xmlns:views="clr-namespace:AvisosMAUI.Views"
              x:Class="AvisosMAUI.Views.GrupoPage" NavigationPage.HasNavigationBar="False"
              Title="">
-    <Grid RowDefinitions="Auto, Auto, *">
+    <Grid RowDefinitions="Auto, Auto, *" x:Name="ContenidoGrid">
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnFondoTapped" />
+        </Grid.GestureRecognizers>
         <Grid Grid.Row="0" BackgroundColor="#26A69A" Padding="15,0" HeightRequest="55" ZIndex="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -19,10 +22,10 @@
 
         <VerticalStackLayout Grid.Row="1" Margin="5,0">
             <Label Margin="15,0" FontSize="18">Buscar alumno:</Label>
-            <SearchBar ></SearchBar>
+            <SearchBar Text="{Binding Busqueda}" SearchCommand="{Binding FiltrarCommand}" ></SearchBar>
         </VerticalStackLayout>
         <Grid Grid.Row="2">
-            <CollectionView x:Name="ListaAlumnos" SelectionMode="Single" Margin="20,5">
+            <CollectionView x:Name="ListaAlumnos" ItemsSource="{Binding ListaAlumnos}" SelectionMode="Single" Margin="20,5">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"/>
                 </CollectionView.ItemsLayout>
@@ -31,16 +34,16 @@
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItems Mode="Reveal">
-                                    <SwipeItem Text="Ver avisos" BackgroundColor="Purple"  />
-                                    <SwipeItem Text="Enviar aviso" BackgroundColor="#26A69A"  />
-                                    <SwipeItem Text="Editar" BackgroundColor="LightGray"  />
-                                    <SwipeItem Text="Eliminar" BackgroundColor="Red" />
+                                    <SwipeItem Text="Ver avisos" Command="{Binding BindingContext.VerDetallesAlumnoCommand, Source={x:Reference ListaAlumnos}}" CommandParameter="{Binding .}" BackgroundColor="Purple"  />
+                                    <SwipeItem Text="Enviar aviso" BackgroundColor="#26A69A" Command="{Binding BindingContext.VerCrearAvisoPersonalCommand, Source={x:Reference ListaAlumnos}}" CommandParameter="{Binding .}"  />
+                                    <SwipeItem Text="Editar" Command="{Binding BindingContext.VerEditarAlumnoCommand, Source={x:Reference ListaAlumnos}}" CommandParameter="{Binding .}" BackgroundColor="LightGray"  />
+                                    <SwipeItem Text="Eliminar" Command="{Binding BindingContext.VerEliminarAlumnoCommand, Source={x:Reference ListaAlumnos}}" CommandParameter="{Binding .}" BackgroundColor="Red" />
                                 </SwipeItems>
                             </SwipeView.RightItems>
                             <Border Background="AliceBlue" Padding="12" Stroke="#D1D1D1" StrokeShape="RoundRectangle 20">
                                 <VerticalStackLayout>
                                     <Label Text="{Binding Nombre}" FontAttributes="Bold" />
-                                    <Label Text="{Binding Matricula}" />
+                                    <Label Text="{Binding NumControl}" />
                                 </VerticalStackLayout>
                             </Border>
                         </SwipeView>
@@ -54,14 +57,55 @@
                 </Border.Shadow>
 
                 <VerticalStackLayout Spacing="0">
-                    <Button Text="Ver registros" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill"/>
-                    <Button Text="Enviar aviso general" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill"/>
-                    <Button Text="Ver avisos generales" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill"/>
-                    <Button Text="Salir" BackgroundColor="Transparent" TextColor="Red" HorizontalOptions="Fill"/>
+                    <Button Text="Agregar alumno" Command="{Binding VerRegistrarAlumnoCommand}" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill">
+                        <Button.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFondoTapped" />
+                        </Button.GestureRecognizers>
+                    </Button>
+                    <Button Text="Actualizar lista" Command="{Binding CargarClaseCommand}" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill">
+                        <Button.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFondoTapped" />
+                        </Button.GestureRecognizers>
+                    </Button>
+                    <Button Text="Enviar aviso general" Command="{Binding VerCrearAvisoGeneralCommand}" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill">
+                        <Button.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFondoTapped" />
+                        </Button.GestureRecognizers>
+                    </Button>
+                    <Button Text="Ver avisos generales" Command="{Binding VerAvisosGeneralesMaestroCommand}" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill">
+                        <Button.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFondoTapped" />
+                        </Button.GestureRecognizers>
+                    </Button>
+                    <Button Text="Salir" BackgroundColor="Transparent" TextColor="Red" HorizontalOptions="Fill">
+                        <Button.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFondoTapped" />
+                        </Button.GestureRecognizers>
+                    </Button>
                 </VerticalStackLayout>
             </Border>
         </Grid>
         <views:LoadingPage Grid.RowSpan="3" ZIndex="10"></views:LoadingPage>
+        
+        <Grid BackgroundColor="#66000000" ZIndex="11" Grid.RowSpan="3">
+            <Grid.Triggers>
+                <DataTrigger TargetType="Grid" Binding="{Binding Eliminando}" Value="True">
+                    <Setter Property="IsVisible" Value="True"></Setter>
+                </DataTrigger>
+                <DataTrigger TargetType="Grid" Binding="{Binding Eliminando}" Value="False">
+                    <Setter Property="IsVisible" Value="False"></Setter>
+                </DataTrigger>
+            </Grid.Triggers>
+
+            <VerticalStackLayout Spacing="20" Background="AliceBlue" Padding="10, 30" VerticalOptions="Center" HorizontalOptions="Fill" TranslationY="-20">
+                <Label Text="Confirmar eliminación" TextColor="Black" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <Button Text="Cancelar" BackgroundColor="LightGray"/>
+                    <Button Text="Eliminar" BackgroundColor="Red" TextColor="White"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
     </Grid>
 
 </ContentPage>

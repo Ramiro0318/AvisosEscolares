@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using AvisosMAUI.Services;
+using AvisosMAUI.ViewModels;
+using AvisosMAUI.Views;
+using Microsoft.Extensions.Logging;
 
 namespace AvisosMAUI
 {
@@ -15,8 +18,11 @@ namespace AvisosMAUI
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<AvisosService>();
+            builder.Services.AddSingleton<AvisosViewModel>();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

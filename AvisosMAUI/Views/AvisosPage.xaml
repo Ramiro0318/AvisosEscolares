@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:AvisosMAUI.Views"             
              x:Class="AvisosMAUI.Views.AvisosPage" NavigationPage.HasNavigationBar="False"
-             Background="#D2DCE4"
+             Background="#D2DCE4" x:Name="Pagina"
              Title="">
 
     <Grid RowDefinitions="Auto, *">
@@ -12,7 +12,7 @@
             <Grid x:Name="BtnPersonales" Grid.Column="0" BackgroundColor="#26A69A" HeightRequest="55">
 
                 <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnTabClicked" />
+                    <TapGestureRecognizer Tapped="OnTabClicked" Command="{Binding VerAvisosPersonalesAlumnoCommand}" />
                 </Grid.GestureRecognizers>
 
                 <Grid VerticalOptions="Center" HorizontalOptions="Center" ColumnDefinitions="*, Auto" ColumnSpacing="8" Padding="5">
@@ -28,7 +28,7 @@
             <Grid x:Name="BtnGenerales" Grid.Column="1" BackgroundColor="Transparent" HeightRequest="55">
 
                 <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnTabClicked" />
+                    <TapGestureRecognizer Tapped="OnTabClicked" Command="{Binding VerAvisosGeneralesAlumnoCommand}" />
                 </Grid.GestureRecognizers>
 
                 <Grid VerticalOptions="Center" HorizontalOptions="Center" ColumnDefinitions="*, Auto" ColumnSpacing="8" Padding="5">
@@ -45,7 +45,7 @@
         <Grid Grid.Row="1">
             <ScrollView>
                 <VerticalStackLayout x:Name="ViewPersonales" IsVisible="True" Spacing="8" Padding="20">
-                    <CollectionView SelectionMode="Single">
+                    <CollectionView SelectionMode="Single" ItemsSource="{Binding ListaAvisosPersonalesAlumno}">
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout Orientation="Vertical" ItemSpacing="9"/>
                         </CollectionView.ItemsLayout>
@@ -53,6 +53,9 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.VerDetallesAvisoPersonalAlumnoCommand, Source={x:Reference Pagina}}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                    </Border.GestureRecognizers>
                                     <Border.Triggers>
                                         <DataTrigger TargetType="Border" Binding="{Binding Leido}" Value="True">
                                             <Setter Property="Background" Value="#B2F0F8FF"></Setter>
@@ -61,131 +64,25 @@
 
                                     <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
                                         <HorizontalStackLayout Spacing="5">
-                                            <Label Text=""></Label>
-                                            <Border Background="Red" Padding="4,0" StrokeShape="RoundRectangle 4" IsVisible="False">
+                                            <Label Text="{Binding Titulo}" FontAttributes="Bold"></Label>
+                                            <Border Background="Red" Padding="4,0" StrokeShape="RoundRectangle 4">
                                                 <Border.Triggers>
                                                     <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="True">
                                                         <Setter Property="IsVisible" Value="True"></Setter>
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="False">
+                                                        <Setter Property="IsVisible" Value="False"></Setter>
                                                     </DataTrigger>
                                                 </Border.Triggers>
                                                 <Label Text="◉" TextColor="White" FontSize="13"></Label>
                                             </Border>
                                         </HorizontalStackLayout>
-                                        <Label Grid.Row="1" LineBreakMode="WordWrap" Text=""></Label>
+                                        <Label Grid.Row="1" LineBreakMode="WordWrap" FontSize="14" Text="{Binding FechaCreacion, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="Gray" HorizontalOptions="End"></Label>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-
-                    <!--todos esos son solo para visualizar-->
-                    <!--los ultimos son leidos-->
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End">
-                                <!--<Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="Recibido a las " />
-                                        <Span Text="12:AM"/>
-                                    </FormattedString>
-                                </Label.FormattedText>-->
-                            </Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
-                        </Grid>
-                    </Border>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto">
-                            <HorizontalStackLayout Spacing="5">
-                                <Label Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                                <Border Background="Red" Padding="3,0" HeightRequest="18" StrokeShape="RoundRectangle 4" IsVisible="True">
-                                    <Label Text="◉" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                                </Border>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
-                        </Grid>
-                    </Border>
                 </VerticalStackLayout>
             </ScrollView>
 
@@ -201,7 +98,7 @@
 
             <ScrollView>
                 <VerticalStackLayout x:Name="ViewGenerales" IsVisible="False" Spacing="8" Padding="20">
-                    <CollectionView SelectionMode="Single">
+                    <CollectionView SelectionMode="Single" ItemsSource="{Binding ListaAvisosGenerales}">
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout Orientation="Vertical" ItemSpacing="9"/>
                         </CollectionView.ItemsLayout>
@@ -209,14 +106,29 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
-                                    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto">
-                                        <Label Grid.Row="0" Text="{Binding Titulo}" FontAttributes="Bold"></Label>
-                                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Descripcion}" LineBreakMode="WordWrap" ></Label>
-                                        <Label Grid.Row="2" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
+                                    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
+
+                                        <Grid ColumnSpacing="5" ColumnDefinitions="*, Auto" Margin="0,0,5,0" Grid.Column="0">
+                                            <Label Grid.Column="0" Text="{Binding Titulo}" LineBreakMode="WordWrap"  FontAttributes="Bold"></Label>
+                                            <Border Background="Red" Grid.Column="1" Padding="4,0,3,3" VerticalOptions="Start" HorizontalOptions="Start" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                                <Border.Triggers>
+                                                    <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="True">
+                                                        <Setter Property="IsVisible" Value="True"></Setter>
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="False">
+                                                        <Setter Property="IsVisible" Value="False"></Setter>
+                                                    </DataTrigger>
+                                                </Border.Triggers>
+                                                <Label Text="◉" TextColor="White" FontSize="13"></Label>
+                                            </Border>
+                                        </Grid>
+
+                                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Contenido}" Margin="0,5,0,0" LineBreakMode="WordWrap" ></Label>
+                                        <Label Grid.Row="2" Grid.ColumnSpan="2" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="- "></Span>
-                                                    <Span Text="{Binding Autor}"></Span>
+                                                    <Span Text="Vigencia - "></Span>
+                                                    <Span Text="{Binding FechaVigencia, StringFormat='{0:dd/MM/yyyy}'}"></Span>
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
@@ -225,13 +137,6 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
-                        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto">
-                            <Label Grid.Row="0" Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                            <Label Grid.Row="1" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                            <Label Grid.Row="2" Text="- Maestro Carlitos"  TextColor="DimGray" FontSize="15" HorizontalOptions="End"></Label>
-                        </Grid>
-                    </Border>
                 </VerticalStackLayout>
             </ScrollView>
         </Grid>

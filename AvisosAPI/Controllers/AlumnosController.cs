@@ -43,7 +43,8 @@ namespace AvisosAPI.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest(ex.Message);
+                //return BadRequest(ex.Message);
+                return BadRequest(new List<string> { ex.Message });
             }
         }
 

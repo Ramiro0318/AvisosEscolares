@@ -4,30 +4,22 @@ using AvisosMAUI.Models;
 using Microsoft.Maui.Platform;
 using Microsoft.Maui.Layouts;
 using System.Linq;
+using AvisosMAUI.ViewModels;
 
 public partial class GrupoPage : ContentPage
 {
-    public GrupoPage()
+    public GrupoPage(AvisosViewModel vm)
     {
         InitializeComponent();
-
-        // Creamos una lista vacía
-        var listaDePrueba = new List<Alumno>();
-
-        // Llenamos con 20 nombres genéricos para probar el scroll
-        for (int i = 1; i <= 20; i++)
-        {
-            listaDePrueba.Add(new Alumno
-            {
-                Nombre = $"Alumno de Prueba #{i}",
-                Matricula = $"221G{i:D4}" // Esto genera 0001, 0002, etc.
-            });
-        }
-
-        // Se los asignamos al CollectionView
-        ListaAlumnos.ItemsSource = listaDePrueba;
+        this.BindingContext = vm;
     }
-
+    private void OnFondoTapped(object sender, EventArgs e)
+    {
+        if (MenuDesplegable.IsVisible)
+        {
+            MenuDesplegable.IsVisible = false;
+        }
+    }
     private void OnToggleMenuClicked(object sender, EventArgs e)
     {
         MenuDesplegable.IsVisible = !MenuDesplegable.IsVisible;

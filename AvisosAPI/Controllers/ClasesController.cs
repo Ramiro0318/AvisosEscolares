@@ -24,13 +24,13 @@ namespace AvisosAPI.Controllers
             this.editarValidator = editarValidator;
         }
 
-        [HttpGet("{idClase}")]
-        public IActionResult VerClase(int idClase)
+        [HttpGet("{idMaestro}")]
+        public IActionResult VerClase(int idMaestro)
         {
             try
             {
                 int.TryParse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value, out int idUsuario);
-                var clase = service.GetClaseByUser(idClase, idUsuario);
+                var clase = service.GetClaseByMaestro(idMaestro, idUsuario);
                 return Ok(clase);
             }
             catch (Exception ex)

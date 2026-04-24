@@ -14,14 +14,14 @@
     public class AgregarAvisoPersonalDTO
     {
         public int IdMaestro { get; set; }
-        public int IdAlumno { get; set;  }
+        public int IdAlumno { get; set; }
         public string? Titulo { get; set; }
         public string? Contenido { get; set; }
     }
     public class AgregarAvisoGeneralDTO
     {
         public int IdMaestro { get; set; }
-        public string? Titulo { get; set; } 
+        public string? Titulo { get; set; }
         public string? Contenido { get; set; }
         public DateTime FechaVigencia { get; set; }
     }

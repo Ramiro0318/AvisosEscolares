@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:AvisosMAUI.Views"   
              x:Class="AvisosMAUI.Views.VerAvisosGeneralesPage" NavigationPage.HasNavigationBar="False"
-             Background="#D2DCE4"
+             Background="Transparent" x:Name="Pagina"
              Title="">
     <Grid RowDefinitions="Auto, *">
         <HorizontalStackLayout Grid.Row="0" BackgroundColor="#FFA69A" Padding="10,0" HeightRequest="55" Spacing="10">
@@ -14,7 +14,7 @@
         <Grid Grid.Row="1">
             <ScrollView>
                 <VerticalStackLayout x:Name="ViewGenerales" Spacing="8" Padding="20">
-                    <CollectionView SelectionMode="Single">
+                    <CollectionView SelectionMode="Single" ItemsSource="{Binding ListaAvisosGenerales}">
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout Orientation="Vertical" ItemSpacing="9"/>
                         </CollectionView.ItemsLayout>
@@ -23,14 +23,35 @@
                             <DataTemplate>
                                 <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
                                     <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
-                                        <Label Grid.Row="0" Text="{Binding Titulo}" FontAttributes="Bold"></Label>
-                                        <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" HorizontalOptions="End" Background="Transparent" BorderColor="Transparent"></ImageButton>
-                                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Descripcion}" LineBreakMode="WordWrap" ></Label>
+
+                                        <Grid ColumnSpacing="5" ColumnDefinitions="*, Auto" Margin="0,0,5,0" Grid.Column="0">
+                                            <Label Grid.Column="0" Text="{Binding Titulo}" LineBreakMode="WordWrap"  FontAttributes="Bold"></Label>
+                                            <Border Background="Red" Grid.Column="1" Padding="4,0,3,3" VerticalOptions="Start" HorizontalOptions="Start" StrokeShape="RoundRectangle 4" IsVisible="True">
+                                                <Border.Triggers>
+                                                    <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="True">
+                                                        <Setter Property="IsVisible" Value="True"></Setter>
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="False">
+                                                        <Setter Property="IsVisible" Value="False"></Setter>
+                                                    </DataTrigger>
+                                                </Border.Triggers>
+                                                <Label Text="◉" TextColor="White" FontSize="13"></Label>
+                                            </Border>
+                                        </Grid>
+
+                                        <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" HeightRequest="24" VerticalOptions="Start" HorizontalOptions="End" Background="Transparent" BorderColor="Transparent">
+                                            <ImageButton.Triggers>
+                                                <DataTrigger TargetType="ImageButton" Binding="{Binding Id}" Value="{Binding BindingContext.idMaestro, Source={x:Reference Pagina}}">
+                                                    <Setter Property="IsVisible" Value="True"></Setter>
+                                                </DataTrigger>
+                                            </ImageButton.Triggers>
+                                        </ImageButton>
+                                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Contenido}" Margin="0,5,0,0" LineBreakMode="WordWrap" ></Label>
                                         <Label Grid.Row="2" Grid.ColumnSpan="2" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="- "></Span>
-                                                    <Span Text="{Binding Autor}"></Span>
+                                                    <Span Text="Vigencia - "></Span>
+                                                    <Span Text="{Binding FechaVigencia, StringFormat='{0:dd/MM/yyyy}'}"></Span>
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
@@ -39,21 +60,6 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                    <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="10">
-                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
-                            <Label Grid.Row="0" Text="Entrega de tareas" FontAttributes="Bold"></Label>
-                            <ImageButton Grid.Row="0" Grid.Column="1" Source="trash.png" HorizontalOptions="End" Background="Transparent" BorderColor="Transparent"></ImageButton>
-                            <Label Grid.Row="1" Grid.ColumnSpan="2" LineBreakMode="WordWrap" Text="Entrega general de certificados"></Label>
-                            <Label Grid.Row="2" Grid.ColumnSpan="2" TextColor="DimGray" Margin="0, 5, 0, 0" FontSize="15" HorizontalOptions="End">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="- "></Span>
-                                        <Span Text="Maestro Carlitos aak as akdjlak  dasd a"></Span>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </Grid>
-                    </Border>
                 </VerticalStackLayout>
             </ScrollView>
         </Grid>

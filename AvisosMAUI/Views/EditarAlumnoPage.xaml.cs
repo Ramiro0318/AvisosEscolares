@@ -2,9 +2,9 @@ using AvisosMAUI.ViewModels;
 
 namespace AvisosMAUI.Views;
 
-public partial class RegistroPage : ContentPage
+public partial class EditarAlumnoPage : ContentPage
 {
-	public RegistroPage(AvisosViewModel vm)
+	public EditarAlumnoPage(AvisosViewModel vm)
 	{
 		InitializeComponent();
 		this.BindingContext = vm;

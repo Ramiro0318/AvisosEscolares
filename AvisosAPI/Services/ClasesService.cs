@@ -17,9 +17,9 @@ namespace AvisosAPI.Services
             this.mapper = mapper;
         }
 
-        public ClaseDTO GetClaseByUser(int idClase, int userMaestro)
+        public ClaseDTO GetClaseByMaestro(int idMaestro, int userMaestro)
         {
-            var clase = repository.Query().Include(x => x.Alumno).FirstOrDefault(x=>x.Id == idClase);
+            var clase = repository.Query().Include(x => x.Alumno).FirstOrDefault(x=>x.IdMaestro == idMaestro);
             if (clase == null)
             {
                 throw new KeyNotFoundException();
