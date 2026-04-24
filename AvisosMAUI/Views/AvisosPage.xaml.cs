@@ -48,4 +48,8 @@ public partial class AvisosPage : ContentPage
     {
         MenuDesplegable.IsVisible = !MenuDesplegable.IsVisible;
     }
+    protected override bool OnBackButtonPressed()
+    {
+        return true;
+    }
 }

@@ -8,7 +8,8 @@ namespace AvisosMAUI.Services
 {
     public class AvisosService
     {
-        string baseUrl = "https://localhost:7184/";
+        //string baseUrl = "https://localhost:7184/";
+        string baseUrl = "https://avisos.duckdns.org/";
         HttpClient cliente;
 
         public AvisosService()

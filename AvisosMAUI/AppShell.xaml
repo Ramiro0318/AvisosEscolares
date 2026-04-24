@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:AvisosMAUI"
     xmlns:views="clr-namespace:AvisosMAUI.Views"
-    Title="AvisosMAUI">
+    Shell.NavBarIsVisible="False"
+    Title="">
 
     <ShellContent
         ContentTemplate="{DataTemplate views:MainPage}" />

@@ -22,7 +22,7 @@
 
         <VerticalStackLayout Grid.Row="1" Margin="5,0">
             <Label Margin="15,0" FontSize="18">Buscar alumno:</Label>
-            <SearchBar Text="{Binding Busqueda}" SearchCommand="{Binding FiltrarCommand}" ></SearchBar>
+            <SearchBar Margin="15,0" Text="{Binding Busqueda}" SearchCommand="{Binding FiltrarCommand}" ></SearchBar>
         </VerticalStackLayout>
         <Grid Grid.Row="2">
             <CollectionView x:Name="ListaAlumnos" ItemsSource="{Binding ListaAlumnos}" SelectionMode="Single" Margin="20,5">
@@ -58,29 +58,21 @@
 
                 <VerticalStackLayout Spacing="0">
                     <Button Text="Agregar alumno" Command="{Binding VerRegistrarAlumnoCommand}" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill">
-                        <Button.GestureRecognizers>
+                        <!--<Button.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnFondoTapped" />
-                        </Button.GestureRecognizers>
+                        </Button.GestureRecognizers>-->
                     </Button>
                     <Button Text="Actualizar lista" Command="{Binding CargarClaseCommand}" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill">
-                        <Button.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnFondoTapped" />
-                        </Button.GestureRecognizers>
+                       
                     </Button>
                     <Button Text="Enviar aviso general" Command="{Binding VerCrearAvisoGeneralCommand}" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill">
-                        <Button.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnFondoTapped" />
-                        </Button.GestureRecognizers>
+                        
                     </Button>
                     <Button Text="Ver avisos generales" Command="{Binding VerAvisosGeneralesMaestroCommand}" BackgroundColor="Transparent" TextColor="Black" HorizontalOptions="Fill">
-                        <Button.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnFondoTapped" />
-                        </Button.GestureRecognizers>
+                       
                     </Button>
                     <Button Text="Salir" BackgroundColor="Transparent" Command="{Binding LogoutCommand}" TextColor="Red" HorizontalOptions="Fill">
-                        <Button.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnFondoTapped" />
-                        </Button.GestureRecognizers>
+                       
                     </Button>
                 </VerticalStackLayout>
             </Border>

@@ -24,4 +24,9 @@ public partial class GrupoPage : ContentPage
     {
         MenuDesplegable.IsVisible = !MenuDesplegable.IsVisible;
     }
+
+    protected override bool OnBackButtonPressed()
+    {
+        return true;
+    }
 }

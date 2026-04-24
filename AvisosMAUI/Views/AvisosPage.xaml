@@ -48,7 +48,7 @@
 
         <Grid Grid.Row="1">
             <!--Spacing="8" Padding="20"-->
-            <CollectionView x:Name="ViewPersonales" IsVisible="True" SelectionMode="Single" ItemsSource="{Binding ListaAvisosPersonalesAlumno}">
+            <CollectionView x:Name="ViewPersonales" IsVisible="True" SelectionMode="None" ItemsSource="{Binding ListaAvisosPersonalesAlumno}">
 
                 <CollectionView.Header>
                     <Border Background="#D2DCE4" Padding="20" Margin="0,0,0,10">
@@ -70,7 +70,7 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border Background="AliceBlue" Padding="12" Stroke="Black" StrokeShape="20">
+                        <Border Background="AliceBlue" Padding="12" Margin="15,0" Stroke="Black" StrokeShape="20">
                             <Border.Triggers>
                                 <DataTrigger TargetType="Border" Binding="{Binding Leido}" Value="True">
                                     <Setter Property="Background" Value="#B2F0F8FF"></Setter>
@@ -82,7 +82,7 @@
                             <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
 
                                 <Grid ColumnSpacing="5"  ColumnDefinitions="*, Auto" Margin="0" Grid.Column="0">
-                                    <Label Grid.Column="0" Text="{Binding Titulo}" LineBreakMode="WordWrap"  FontAttributes="Bold"></Label>
+                                    <Label Grid.Column="0" Text="{Binding Titulo}" LineBreakMode="WordWrap" FontAttributes="Bold"></Label>
                                     <Border Background="Red" Grid.Column="1" Padding="4,0,3,3" Margin="0,0,10,0" VerticalOptions="Start" HorizontalOptions="Start" StrokeShape="RoundRectangle 4" IsVisible="True">
                                         <Border.Triggers>
                                             <DataTrigger TargetType="Border" Binding="{Binding Nuevo}" Value="True">
@@ -97,7 +97,7 @@
                                 </Grid>
 
                                 <Button Grid.Row="0" Grid.Column="1" Text="Ver" ImageSource="see.png" Command="{Binding BindingContext.VerDetallesAvisoPersonalAlumnoCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding .}" VerticalOptions="Start" HorizontalOptions="End" BackgroundColor="Purple" TextColor="White" Padding="10, 1" />
-                                <Label Grid.Row="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
+                                <Label Grid.Row="1"  Grid.Column="1" Text="18/02/2024  11:30AM" FontSize="14" TextColor="DimGray" HorizontalOptions="End"></Label>
                             </Grid>
                         </Border>
                     </DataTemplate>
@@ -105,7 +105,7 @@
             </CollectionView>
 
 
-            <CollectionView x:Name="ViewGenerales" IsVisible="False" SelectionMode="Single" VerticalScrollBarVisibility="Always" ItemsSource="{Binding ListaAvisosGenerales}">
+            <CollectionView x:Name="ViewGenerales" IsVisible="False" SelectionMode="None" VerticalScrollBarVisibility="Always" ItemsSource="{Binding ListaAvisosGenerales}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
                 </CollectionView.ItemsLayout>
